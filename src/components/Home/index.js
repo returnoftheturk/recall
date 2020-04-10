@@ -1,16 +1,37 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {withAuthorization} from '../Session';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import GroupForm from '../custom_components/GroupForm'
 
-const HomePage = () => (
-    <div>
-        <h1>Home Page</h1>
-        <p> The Home Page is accessible by every signed in user.</p>
-        <Button variant="contained" color="primary">
-            Hello World
-        </Button>
-    </div>
-);
+class HomePage extends Component {
+    
+    constructor(props){
+        super(props);
+        this.state = {
+            formShow : false
+        }
+    }
+    handleFormShow = () => {
+        this.setState({formShow: true})
+    }
+    handleFormHide = () => {
+        this.setState({formShow: false})
+    }
+    render(){
+        return (
+            <div>
+                <h1>Home Page</h1>
+                <p> The Home Page is accessible by every signed in user.</p>
+                <Fab color="primary" aria-label="add" onClick={this.handleFormShow}>
+                    <AddIcon />
+                </Fab>
+                <GroupForm show={this.state.formShow} handleFormHide={this.handleFormHide}/>
+            </div>
+
+        )
+    }
+}
 const condition = authUser => authUser != null;
 
 export default withAuthorization(condition)(HomePage);
