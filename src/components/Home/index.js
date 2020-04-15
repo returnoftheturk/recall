@@ -18,6 +18,11 @@ class HomePage extends Component {
     handleFormHide = () => {
         this.setState({formShow: false})
     }
+    handleFormSubmit = (groupName, description) => {
+        // TODO, CREATE NEW GROUP COMPONENT AND RENDER ON SCREEN
+        this.setState({formShow: false})
+        console.log(groupName, description);
+    }
     render(){
         return (
             <div>
@@ -26,7 +31,10 @@ class HomePage extends Component {
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow}>
                     <AddIcon />
                 </Fab>
-                <GroupForm show={this.state.formShow} handleFormHide={this.handleFormHide}/>
+                <GroupForm 
+                    show={this.state.formShow} 
+                    handleFormHide={this.handleFormHide}
+                    handleFormSubmit={this.handleFormSubmit} />
             </div>
 
         )
