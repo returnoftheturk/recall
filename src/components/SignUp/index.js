@@ -28,8 +28,15 @@ class SignUpFormBase extends Component {
         this.props.firebase
         .doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser =>{
+            return this.props.firebase
+                .user(authUser.user.uid)
+                .set({
+                    username,
+                    email
+                });
+        }).then(()=>{
             this.setState({...INITIAL_STATE});
-            this.props.history.push(ROUTES.HOME)
+            this.props.history.push(ROUTES.HOME);
         })
         .catch(error =>{
             this.setState({error})
@@ -51,7 +58,6 @@ class SignUpFormBase extends Component {
         const isInvalid = passwordOne !== passwordTwo ||
             passwordOne === '' || email === '' || username === '';
         return(
-            // <h1>Hello</h1>
             <form onSubmit={this.onSubmit}>
             <input
                 name="username"
