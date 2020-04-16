@@ -14,15 +14,15 @@ class GroupForm extends Component {
     handleSubmit = () => {
         const {groupName, description} = this.state;
         if (groupName !== '') {
-            this.setState({...INITIAL_STATE})
             this.props.handleFormSubmit(groupName, description);
+            this.setState({...INITIAL_STATE})
         }else{
             this.setState({touched: true})
         }
     }
     handleClose = () => {
-        this.setState({...INITIAL_STATE})
         this.props.handleFormHide();
+        this.setState({...INITIAL_STATE})
     }
     
     render(){
@@ -40,7 +40,7 @@ class GroupForm extends Component {
                             <Form.Control
                                 isInvalid={isInvalid && touched}
                                 type="text"
-                                placeholder="French Meetup"
+                                // placeholder="French Meetup"
                                 value={this.state.groupName}
                                 onChange={e=>{this.setState({groupName:e.target.value, touched: true})}} />
                             <Form.Control.Feedback type="invalid">Group name is required</Form.Control.Feedback>
@@ -51,7 +51,7 @@ class GroupForm extends Component {
                             <Form.Control 
                                 as="textarea" 
                                 rows="3"
-                                placeholder="Joe's MWF Conversational Meetup"
+                                // placeholder="Joe's MWF Conversational Meetup"
                                 value={this.state.description}
                                 onChange={e=>{this.setState({description:e.target.value})}}
                                 />
