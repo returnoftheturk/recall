@@ -22,11 +22,11 @@ class Firebase{
 
     doCreateUserWithEmailAndPassword = (email, password) => (
         this.auth.createUserWithEmailAndPassword(email, password)
-    )
+    );
 
     doSignInWithEmailAndPassword = (email, password) => (
         this.auth.signInWithEmailAndPassword(email, password)
-    )
+    );
     
     doSignOut = () => this.auth.signOut();
 
@@ -34,9 +34,18 @@ class Firebase{
 
     doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
-    user = uid => this.db.collection('users').doc(uid)
+    user = uid => this.db.collection('users').doc(uid);
 
     users = () => this.db.collection('users');
+
+    createNewGroup = (groupName, groupDesc) => (this.db.collection('groups').add({
+        name: groupName,
+        description: groupDesc,
+        user: this.auth.currentUser.uid
+    }));
+
+    groups = () => (this.db.collection('groups').where("user","==",this.auth.currentUser.uid).get());
+
 }
 
 export default Firebase;

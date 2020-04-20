@@ -11,7 +11,8 @@ import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import * as ROUTES from '../../constants/routes';
 import {withAuthentication} from '../Session';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../css/App.css';
 
 class App extends Component {
   
