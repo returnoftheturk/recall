@@ -21,7 +21,12 @@ class HomePage extends Component {
     handleFormSubmit = (groupName, description) => {
         // TODO, CREATE NEW GROUP COMPONENT AND RENDER ON SCREEN
         this.setState({formShow: false})
-        console.log(groupName, description);
+        this.props.firebase.createNewGroup(groupName, description).then(ref=>{
+            // TODO: Possibly update state to refresh with new groups?
+            console.log(ref)
+        }).catch(err=>{
+            console.log(err)
+        })
     }
     render(){
         return (

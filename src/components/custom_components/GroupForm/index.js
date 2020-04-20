@@ -30,7 +30,7 @@ class GroupForm extends Component {
         const isInvalid = groupName === '';
         return(
             <Modal show = {this.props.show} onHide={this.props.handleFormHide}>
-                <Modal.Header closeButton onHide={this.handleClose}>
+                <Modal.Header onHide={this.handleClose}>
                     <Modal.Title>New Group</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
