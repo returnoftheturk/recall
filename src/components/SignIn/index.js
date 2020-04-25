@@ -32,7 +32,7 @@ class SignInFormBase extends Component {
             .doSignInWithEmailAndPassword(email, password)
             .then(authUser => {
                 this.setState({...INITIAL_STATE});
-                this.props.history.push(ROUTES.HOME);
+                this.props.history.push(ROUTES.GROUP);
             })
             .catch(error => {
                 this.setState({error})
