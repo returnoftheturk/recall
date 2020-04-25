@@ -88,3 +88,10 @@ html, body {
         flex-direction: column;
     }
 }
+.spinner { 
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    width: 4rem;
+    height: 4rem;
+}

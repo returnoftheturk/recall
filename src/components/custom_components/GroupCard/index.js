@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const GroupCard = props => {
     return (
-        <div className="groupCard">
+        <div className="groupCard" onClick = {props.onClick}>
             {/* <div className="card_image">
                 <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
             </div> */}
@@ -11,7 +11,7 @@ const GroupCard = props => {
                 <p>{props.name}</p>
             </div>
             <div className="group_desc title-black">
-                <p>ASDASD</p>
+                <p>{props.description}</p>
             </div>
         </div>
     )

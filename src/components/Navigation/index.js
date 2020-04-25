@@ -20,7 +20,7 @@ const NavigationAuth = () => (
             <Link to = {ROUTES.LANDING}> Landing</Link>
         </li>
         <li>
-            <Link to = {ROUTES.GROUP}> Group</Link>
+            <Link to = {ROUTES.GROUP}> Groups</Link>
         </li>
         <li>
             <Link to = {ROUTES.ACCOUNT}> Account </Link>
