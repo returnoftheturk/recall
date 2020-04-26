@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {withFirebase} from '../Firebase';
+import Spinner from 'react-bootstrap/Spinner'
 
 class AdminPage extends Component {
     constructor(props){
@@ -35,7 +36,7 @@ class AdminPage extends Component {
         return (
             <div>
                 <h1>ADMIN</h1>
-                {loading && <div>Loading ... </div>}
+                {loading && <Spinner animation="grow" className='spinner'/>}
                 <UserList users={users}/>
             </div>
         )

@@ -21,4 +21,77 @@
     font-weight: 700;
     src: local('Roboto'), url(./fonts/Roboto-Bold.ttf) format('truetype');
 }
-body { font-family: 'Roboto', sans-serif; }
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-family: 'Roboto', sans-serif; 
+}
+.group-list {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 0 -5px;
+}
+
+.groupCard {
+    margin: 15px auto;
+    width: 300px;
+    height: 70px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.25), -2px -2px 15px 3px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+.groupCard .group_name {
+    text-align: center;
+    border-radius: 0px 0px 20px 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 15px auto auto 10px;
+    /* object-fit: cover;
+    width: inherit;
+    height: inherit; */
+}
+
+.groupCard .group_desc {
+    text-align: center;
+    font-size: 30px;
+    border-radius: 0px 0px 20px 20px;
+    margin: 15px auto auto auto;
+}
+
+.groupCard:hover, .groupCard:active{
+    transform: scale(0.9, 0.9);
+    box-shadow: 3px 3px 20px 7px rgba(0,0,0,0.25), 
+        -3px -3px 20px 7px rgba(0,0,0,0.22);
+}
+
+.title-white {
+    color: white;
+}
+
+.title-black {
+    color: black;
+}
+
+@media all and (max-width: 500px) {
+    .group-list {
+       
+        flex-direction: column;
+    }
+}
+.spinner { 
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    width: 4rem;
+    height: 4rem;
+}

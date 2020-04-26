@@ -44,7 +44,7 @@ class Firebase{
         user: this.auth.currentUser.uid
     }));
 
-    groups = () => (this.db.collection('groups').where("user","==",this.auth.currentUser.uid).get());
+    groups = () => (this.db.collection('groups').where("user","==",this.auth.currentUser.uid));
 
 }
 
