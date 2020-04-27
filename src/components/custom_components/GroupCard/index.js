@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const GroupCard = props => {
+    const handleClick = () => {
+        props.onClick(props.id);
+    }
+
     return (
-        <div className="groupCard" onClick = {props.onClick}>
-            {/* <div className="card_image">
-                <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
-            </div> */}
+        <div className="groupCard" onClick = {handleClick}>
             <div className="group_name title-black">
                 <p>{props.name}</p>
             </div>
