@@ -8,6 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/styles';
 import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
+import GroupCard from '../custom_components/GroupCard';
 
 const style = theme => ({
     fab: {
@@ -28,6 +29,7 @@ class NamePageBase extends Component {
             names: [],
             loading: false
         }
+        this.groupId = this.props.location.gId;
         
     }
     handleFormShow = () => {
@@ -39,44 +41,40 @@ class NamePageBase extends Component {
     handleFormSubmit = (fullName, meetingPlace, description, socials) => {
         this.setState({formShow: false})
         console.log(fullName, meetingPlace, description, socials)
-        // this.props.firebase.createNewGroup(groupName, description).then(ref=>{
-        //     // TODO: Possibly update state to refresh with new groups?
-        //     console.log(ref)
-        // }).catch(err=>{
-        //     console.log(err)
-        // })
+        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, this.groupId).then(ref => {
+            console.log(ref)
+        }).catch(err => console.log(err))
     }
     renderNameCards(){
         const {names} = this.state;
         return (
             <div className="group-list">
                 {names.map(name => (
-                    0
-                    // <GroupCard
-                    //     onClick={this.handleGroupClick}
-                    //     id={group.id}
-                    //     key={group.id}
-                    //     name={group.name}
-                    //     description={group.description}
-                    // />
+                    <GroupCard
+                        onClick={this.handleGroupClick}
+                        id={name.id}
+                        key={name.id}
+                        name={name.name}
+                        description={name.description}
+                    />
                 ))}
             </div>
         )
     }
     componentDidMount(){
-        if(this.props.location.gId === undefined){
+        if(this.groupId === undefined){
             this.props.history.push(ROUTES.LANDING);
         }else{
             this.setState({loading:true})
-            // this.getGroups = this.props.firebase.groups().onSnapshot(snapshot => {
-            //         const groups = snapshot.docs.map(group =>
-            //             ({
-            //                 id: group.id,
-            //                 ...group.data()
-            //             })
-            //         )
-            //         this.setState({groups: groups, loading: false})
-            //     })
+            this.getNames = this.props.firebase.names(this.groupId).onSnapshot(snapshot => {
+                const names = snapshot.docs.map(name => (
+                    {
+                        id: name.id,
+                        ...name.data()
+                    }
+                ))
+                this.setState({names: names, loading:false})
+            })
         }
     }
     render(){
@@ -85,7 +83,7 @@ class NamePageBase extends Component {
         return (
             <div>
                 <h1>
-                    Names Page {this.props.location.gId}
+                    Names Page {this.groupId}
                 </h1>
                 <NameForm 
                     show={this.state.formShow} 
