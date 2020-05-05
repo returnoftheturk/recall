@@ -61,6 +61,11 @@ class NamePageBase extends Component {
             </div>
         )
     }
+    componentWillUnmount(){
+        if(this.getNames){
+            this.getNames();
+        }
+    }
     componentDidMount(){
         if(this.groupId === undefined){
             this.props.history.push(ROUTES.LANDING);
@@ -83,7 +88,7 @@ class NamePageBase extends Component {
         return (
             <div>
                 <h1>
-                    Names Page {this.groupId}
+                    Names Page
                 </h1>
                 <NameForm 
                     show={this.state.formShow} 
@@ -93,7 +98,7 @@ class NamePageBase extends Component {
                     <Spinner animation="grow" className='spinner'/>:
                     names.length > 0 ? 
                         this.renderNameCards() : 
-                        <p> Looks like you don't have any names yet.  Click Add below to create one.</p>
+                        <p> This group looks empty!  Click Add below to create a new contact.</p>
                 }
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow} className={classes.fab}>
                     <AddIcon />
