@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/styles';
 import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
 import GroupCard from '../custom_components/GroupCard';
+import NameCard from '../custom_components/NameCard';
 
 const style = theme => ({
     fab: {
@@ -48,14 +49,10 @@ class NamePageBase extends Component {
     renderNameCards(){
         const {names} = this.state;
         return (
-            <div className="group-list">
+            <div className="contact-list">
                 {names.map(name => (
-                    <GroupCard
-                        onClick={this.handleGroupClick}
-                        id={name.id}
+                    <NameCard
                         key={name.id}
-                        name={name.name}
-                        description={name.description}
                     />
                 ))}
             </div>
@@ -85,6 +82,7 @@ class NamePageBase extends Component {
     render(){
         const {classes} = this.props;
         const {names, loading} = this.state;
+        console.log('names', names)
         return (
             <div>
                 <h1>

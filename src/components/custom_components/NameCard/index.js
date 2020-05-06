@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import icon from '../../../css/icons/256_15.png'
 
 const ContactCard = props => {
     const handleClick = () => {
@@ -7,13 +8,13 @@ const ContactCard = props => {
     }
 
     return (
-        <div className="contactCard" onClick = {handleClick}>
-            <div className="contact_name title-black">
-                <p>{props.name}</p>
+        <div className="contactCard">
+            <div className="contactIcon">
+                <img src={icon}/>
             </div>
-            <div className="contact_desc title-black">
-                <p>{props.description}</p>
-            </div>
+            <div className="contactInfo">
+
+            </div>            
         </div>
     )
 }
