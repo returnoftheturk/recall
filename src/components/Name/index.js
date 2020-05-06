@@ -8,7 +8,6 @@ import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/styles';
 import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
-import GroupCard from '../custom_components/GroupCard';
 import NameCard from '../custom_components/NameCard';
 
 const style = theme => ({
@@ -101,6 +100,7 @@ class NamePageBase extends Component {
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow} className={classes.fab}>
                     <AddIcon />
                 </Fab>
+                
             </div>
             
         )

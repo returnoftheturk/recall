@@ -35,6 +35,11 @@ html, body {
     flex-direction: row;
     margin: 0 -5px;
 }
+@media all and (max-width: 500px) {
+    .group-list, .contact-list{
+        flex-direction: column;
+    }
+}
 
 .groupCard {
     margin: 15px auto;
@@ -56,9 +61,6 @@ html, body {
     font-weight: bold;
     font-size: 30px;
     margin: 15px auto auto 10px;
-    /* object-fit: cover;
-    width: inherit;
-    height: inherit; */
 }
 
 .groupCard .group_desc {
@@ -68,8 +70,14 @@ html, body {
     margin: 15px auto auto auto;
 }
 
-.groupCard:hover, .groupCard:active{
+.groupCard:hover, .groupCard:active {
     transform: scale(0.9, 0.9);
+    box-shadow: 3px 3px 20px 7px rgba(0,0,0,0.25), 
+        -3px -3px 20px 7px rgba(0,0,0,0.22);
+}
+
+.contactCard:hover, .contactCard:active{
+    transform: scale(0.97, 0.97);
     box-shadow: 3px 3px 20px 7px rgba(0,0,0,0.25), 
         -3px -3px 20px 7px rgba(0,0,0,0.22);
 }
@@ -82,12 +90,6 @@ html, body {
     color: black;
 }
 
-@media all and (max-width: 500px) {
-    .group-list {
-       
-        flex-direction: column;
-    }
-}
 .spinner { 
     position: fixed; 
     top: 50%;
@@ -96,42 +98,85 @@ html, body {
     height: 4rem;
 }
 .contactCard {
-    height:320px;
-	width:428px;	
+    margin: 15px auto;
+    border-radius: 20px;
+    height:250px;
+	width:300px;	
 	overflow: hidden;
-	box-shadow: 0px 0px 43px -10px black;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.25), -2px -2px 15px 3px rgba(0,0,0,0.22);
+    transition: 0.4s;
     background-color: lightcoral;
     display: flex;
     align-items: stretch;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
-    z-index: 20;
 }
-.contactCard .contactInfo {
-    z-index: 10;
-    background-color: lightgreen;
-    flex: 1;
-}
+
 .contactCard .contactIcon {
-    height: 100px;
+    height: 125px;
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 img {
     max-width: 100%;
     height: inherit;
 }
-.groupCard {
-    margin: 15px auto;
-    width: 300px;
-    height: 70px;
-    border-radius: 20px;
-    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.25), -2px -2px 15px 3px rgba(0,0,0,0.22);
-    cursor: pointer;
-    transition: 0.4s;
+.logo{
+    height: 100px;
+    border-radius: 4px;
+    display: inline-block;			
+    background: #6acd79;
+    color: #fff;
+    padding: 0 0.1em 0 .1em;
+    border: 4px solid #fff;
+    position: relative;
+    pointer-events: none;
+    font-size: 4em;				
+}
+.logo .fat{
+    font-weight: 800;
+}
+.logo .skinny{
+    font-weight: 100;
+}
+.contactCard .contactInfo {
+    position: relative;
+    margin: auto;
+    height: 125px;
+    width: inherit;
+    text-align: center;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     flex-wrap: nowrap;
+    /* background: linear-gradient(#E96874, #6E3663, #2B0830); */
+    background-color: lightcyan;
+    /* border-radius: 2px; */
+    /* box-shadow: 0 6px 12px -3px rgba(0,0,0,.3); */
+    /* color: #fff; */
+    /* padding: 30px; */
+    flex: 1;
+}
+.contactInfo .infoTopRow {
+    width: inherit;
+    height: inherit;
+    background-color: lightslategray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.contactInfo .infoMiddleRow {
+    width: inherit;
+    height: inherit;
+    background-color: lawngreen;
+    padding: 0 5px 0 5px;
+}
+.contactInfo .infoBottomRow {
+    width: inherit;
+    height: inherit;
+    background-color: lightseagreen;
 }
