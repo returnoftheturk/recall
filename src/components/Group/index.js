@@ -9,6 +9,7 @@ import {compose} from 'recompose';
 import Spinner from 'react-bootstrap/Spinner';
 import {withRouter} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import '../../css/groupCard.css';
 
 const style = theme => ({
     fab: {

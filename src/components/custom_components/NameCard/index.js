@@ -27,9 +27,7 @@ class ContactCard extends Component {
         const styles = {
             frontCard: {
                 opacity: this.state.isHovering? '0.6': '1',
-                backgroundColor: this.state.isHovering? '#ffffff !important' : '',
-                transition: '0.2s linear'
-
+                backgroundColor: this.state.isHovering? '#ffffff !important' : ''
             }
         }
         return (

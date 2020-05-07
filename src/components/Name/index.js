@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/styles';
 import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
 import NameCard from '../custom_components/NameCard';
+import '../../css/contactCard.css'
 
 const style = theme => ({
     fab: {
