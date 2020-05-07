@@ -155,14 +155,8 @@ img {
     left: 50%;
     top: 50%;
     border-radius: 20px;
-    
     transition: 0.2s linear;
-    /* background: linear-gradient(#E96874, #6E3663, #2B0830); */
-    background-color: lightcyan;
-    /* border-radius: 2px; */
-    /* box-shadow: 0 6px 12px -3px rgba(0,0,0,.3); */
-    /* color: #fff; */
-    /* padding: 30px; */
+    background-color: rgb(20, 179, 209,0);
     flex: 1;
 }
 .contactInfo .infoTopRow {
@@ -174,37 +168,56 @@ img {
     flex-grow: 1;
     justify-content: space-around;
     align-items: center;
-
 }
-.contactInfo .infoMiddleRow {
+
+.contactInfo .infoDescription {
     width: inherit;
     height: inherit;
-    background-color: lawngreen;
-    padding: 0 5px 0 5px;
+    padding: 0 10px 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 2;
+    color: #FDE3A7;
+    font-size: 18px;
+    text-align: justify;
 }
-.contactInfo .infoBottomRow {
+
+.contactInfo .infoSocials {
     width: inherit;
     height: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    background-color: lightseagreen;
+    padding-bottom: 5px;
+    font-size: 18px;
+    font-weight: 900;
 }
+
 .cardContainer {
     position: relative;
 }
+
 .contactCardHover {
     transition: 0.2s linear;
     opacity: 1;
+    background-color: rgb(20, 179, 209,0.6);
 }
+
 .contactDate {
     font-size: 16px;
+    color: #E4F1FE;
 }
+
 .contactName {
     font-size: 24px;
+    color: #322A60;
+    font-weight: bold;
+}
+
+.atIcon {
+    height: 25px;
+    margin-right: 5px;
+    color: white;
 }
