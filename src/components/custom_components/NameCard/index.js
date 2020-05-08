@@ -23,6 +23,14 @@ class ContactCard extends Component {
             isHovering:false
         });
     };
+    getInitials(){
+        const names = this.props.fullName.toUpperCase().split(' ');
+        return [names[0][0], names[1] ? names[1][0] : '']
+    }
+    shortenString(toShorten,maxLen){
+        return toShorten.length > maxLen ? 
+            toShorten.substring(0,maxLen) + '...' : toShorten;
+    }
     render(){
         const styles = {
             frontCard: {
@@ -30,44 +38,44 @@ class ContactCard extends Component {
                 backgroundColor: this.state.isHovering? '#ffffff !important' : ''
             }
         }
+        const [firstInitial, secondInitial] = this.getInitials();
+
         return (
             <div className="cardContainer" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                 <div className="contactCard" style={styles.frontCard}>
                     <div className="contactIcon">
                         <img src={icon} alt="profileIcon"/>
-                        <div className="logo"><span className="fat">E</span><span className="skinny">K</span></div>		
+                        <div className="logo"><span className="fat">{firstInitial}</span><span className="skinny">{secondInitial}</span></div>		
                     </div>
                 </div>
 
                 <div className={`${this.state.isHovering&&'contactCardHover'} contactInfo`}>
                     <div className="infoTopRow">
                         <div className="contactDate">
-                            May 18, 2020
+                            {this.props.date}
                         </div>
                         <div className="contactName"> 
-                            Ahmet AKgul
+                            {this.props.fullName}
                         </div>
                     </div>
                     <div className="infoDescription">
-                        This is an example description of what 
-                        the person might have written maybe some onMouseE
-    
+                        {this.shortenString(this.props.description, 120)}
                     </div>
                     <div className={`${true&&'title-white'} infoSocials`}>
                         <img src={atIcon} alt="atIcon" className="atIcon"/>
-                         something
+                         {this.shortenString(this.props.socials,15)}
                     </div>
                 </div>            
-
             </div>
-            
         )
     }
-
-
 }
 ContactCard.propTypes = {
-    fullName: PropTypes.string
+    fullName: PropTypes.string,
+    description: PropTypes.string,
+    socials: PropTypes.string,
+    date: PropTypes.string,
+    // meetingPlace: PropTypes.string
 }
 
 export default ContactCard;

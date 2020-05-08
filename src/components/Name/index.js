@@ -53,6 +53,11 @@ class NamePageBase extends Component {
                 {names.map(name => (
                     <NameCard
                         key={name.id}
+                        fullName={name.fullName}
+                        description={name.description}
+                        socials={name.socials}
+                        date={name.date}
+                        // meetingPlace={name.meetingPlace}
                     />
                 ))}
             </div>
