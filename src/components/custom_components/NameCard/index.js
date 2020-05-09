@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import icon from '../../../css/icons/256_15.png'
-import atIcon from '../../../css/icons/atIcon.png'
+import atIcon from '../../../css/icons/social.png'
+import mapIcon from '../../../css/icons/map.png'
+import nameIcon from '../../../css/icons/name_tag.png'
+import dateIcon from '../../../css/icons/date.png'
+import descIcon from '../../../css/icons/description.png'
 
 class ContactCard extends Component {
     constructor(props){
@@ -52,19 +56,34 @@ class ContactCard extends Component {
                 <div className={`${this.state.isHovering&&'contactCardHover'} contactInfo`}>
                     <div className="infoTopRow">
                         <div className="contactDate">
+                            <img src={dateIcon} alt="dateIcon" className="dateIcon"/>
                             {this.props.date}
                         </div>
-                        <div className="contactName"> 
-                            {this.props.fullName}
+                        <div className="contactName">
+                            <img src={nameIcon} alt="nameIcon" className="nameIcon"/>
+                            {this.shortenString(this.props.fullName,10)}
                         </div>
                     </div>
-                    <div className="infoDescription">
-                        {this.shortenString(this.props.description, 120)}
+                    {this.props.description && 
+                        <div className="infoDescription">
+                            <img src={descIcon} alt="descIcon" className="descIcon"/>
+                            {this.shortenString(this.props.description, 120)}
+                        </div>
+                    }
+                    <div className='infoBottomRow'>
+                        {this.props.meetingPlace && 
+                            <div className='infoLocation'>
+                                <img src={mapIcon} alt="mapIcon" className="mapIcon"/>
+                                Montreal
+                            </div>
+                        }
+                        {this.props.socials && 
+                            <div className='title-white infoSocials'>
+                                @{this.shortenString(this.props.socials,15)}
+                            </div>
+                        }
                     </div>
-                    <div className={`${true&&'title-white'} infoSocials`}>
-                        <img src={atIcon} alt="atIcon" className="atIcon"/>
-                         {this.shortenString(this.props.socials,15)}
-                    </div>
+                    
                 </div>            
             </div>
         )

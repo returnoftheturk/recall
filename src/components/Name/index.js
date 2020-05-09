@@ -105,8 +105,7 @@ class NamePageBase extends Component {
                 }
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow} className={classes.fab}>
                     <AddIcon />
-                </Fab>
-                
+                </Fab>                
             </div>
             
         )

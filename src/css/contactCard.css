@@ -63,6 +63,8 @@ img {
     border-radius: 20px;
     background-color: rgb(20, 179, 209,0);
     flex: 1;
+    word-wrap    : break-word;
+    overflow-wrap: break-word;
 }
 .contactInfo .infoTopRow {
     width: inherit;
@@ -78,24 +80,32 @@ img {
 .contactInfo .infoDescription {
     width: inherit;
     height: inherit;
-    padding: 0 10px 0 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: left;
+    margin: 5px;
+    /* border: 3px solid #FFECDB; */
+    position: relative;
+    align-items: left;
     flex-grow: 2;
     color: #FDE3A7;
     font-size: 18px;
-    text-align: justify;
+    word-wrap    : normal;
+    overflow-wrap: break-word;
 }
 
-.contactInfo .infoSocials {
+.contactInfo .infoBottomRow {
     width: inherit;
     height: inherit;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-grow: 1;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
+}
+
+.infoLocation{
+    font-size: 18px;
+}
+.contactInfo .infoSocials {
     font-size: 18px;
     font-weight: 900;
 }
@@ -124,4 +134,27 @@ img {
     height: 25px;
     margin-right: 5px;
     color: white;
+}
+
+.dateIcon {
+    height: 20px;
+    margin-right: 5px;
+}
+.descIcon {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.nameIcon {
+    height: 20px;
+    margin-right: 5px;
+}
+
+.mapIcon {
+    height: 25px;
+    margin-right: 5px;
+    padding-bottom: 3px;
 }
