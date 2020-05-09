@@ -14,6 +14,8 @@ import * as ROUTES from '../../constants/routes';
 import {withAuthentication} from '../Session';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 class App extends Component {
   
@@ -21,6 +23,8 @@ class App extends Component {
     return(
       <Router>
         <div>
+          <CssBaseline />
+
           <Navigation />
           <hr/>
           <Route exact path={ROUTES.LANDING} component={LandingPage} />
