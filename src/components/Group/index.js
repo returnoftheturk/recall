@@ -6,9 +6,10 @@ import GroupForm from '../custom_components/GroupForm';
 import GroupCard from '../custom_components/GroupCard';
 import { withStyles } from '@material-ui/styles';
 import {compose} from 'recompose';
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner';
 import {withRouter} from 'react-router-dom';
-
+import * as ROUTES from '../../constants/routes';
+import '../../css/groupCard.css';
 
 const style = theme => ({
     fab: {
@@ -44,8 +45,8 @@ class GroupPageBase extends Component {
             console.log(err)
         })
     }
-    handleGroupClick = () =>{
-        console.log("CLICKED")
+    handleGroupClick = (key) =>{
+        this.props.history.push({pathname: ROUTES.NAME, gId: key});
     }
     
     componentDidMount() {
@@ -72,6 +73,7 @@ class GroupPageBase extends Component {
                 {groups.map(group => (
                     <GroupCard
                         onClick={this.handleGroupClick}
+                        id={group.id}
                         key={group.id}
                         name={group.name}
                         description={group.description}

@@ -46,6 +46,17 @@ class Firebase{
 
     groups = () => (this.db.collection('groups').where("user","==",this.auth.currentUser.uid));
 
+    names = (groupID) => this.db.collection('names').where("user","==",this.auth.currentUser.uid).where("groupID", "==", groupID);
+
+    createNewName = (fullName, meetingPlace, description, socials, groupID) => (this.db.collection('names').add({
+        fullName,
+        meetingPlace,
+        description,
+        socials,
+        groupID,
+        user: this.auth.currentUser.uid
+    }))
+
 }
 
 export default Firebase;

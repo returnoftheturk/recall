@@ -1,0 +1,160 @@
+.contactCard:hover, .contactCard:active{
+    transform: scale(0.97, 0.97);
+    box-shadow: 3px 3px 20px 7px rgba(0,0,0,0.25), 
+        -3px -3px 20px 7px rgba(0,0,0,0.22);
+}
+.contactCard {
+    margin: 15px auto;
+    border-radius: 20px;
+    height:175px;
+	width:300px;	
+	overflow: hidden;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.25), -2px -2px 15px 3px rgba(0,0,0,0.22);
+    transition: 0.3s linear;
+    background-color: lightcoral;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.contactCard .contactIcon {
+    height: 125px;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+img {
+    max-width: 100%;
+    height: inherit;
+}
+.logo{
+    height: 100px;
+    border-radius: 4px;
+    display: inline-block;			
+    background: #6acd79;
+    color: #fff;
+    padding: 0 0.1em 0 .1em;
+    border: 4px solid #fff;
+    position: relative;
+    pointer-events: none;
+    font-size: 4em;				
+}
+.logo .fat{
+    font-weight: 800;
+}
+.logo .skinny{
+    font-weight: 100;
+}
+.contactInfo {
+    position: absolute;
+    margin: auto;
+    height:175px;
+	width:300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    opacity: 0;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 20px;
+    background-color: rgb(20, 179, 209,0);
+    flex: 1;
+    word-wrap    : break-word;
+    overflow-wrap: break-word;
+}
+.contactInfo .infoTopRow {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contactInfo .infoDescription {
+    width: inherit;
+    height: inherit;
+    text-align: left;
+    margin: 5px;
+    /* border: 3px solid #FFECDB; */
+    position: relative;
+    align-items: left;
+    flex-grow: 2;
+    color: #FDE3A7;
+    font-size: 18px;
+    word-wrap    : normal;
+    overflow-wrap: break-word;
+}
+
+.contactInfo .infoBottomRow {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+    padding-bottom: 2px;
+}
+
+.infoLocation{
+    font-size: 18px;
+}
+.contactInfo .infoSocials {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.cardContainer {
+    position: relative;
+}
+
+.contactCardHover {
+    opacity: 1;
+    background-color: rgb(20, 179, 209,0.6);
+}
+
+.contactDate {
+    font-size: 16px;
+    color: #E4F1FE;
+}
+
+.contactName {
+    font-size: 24px;
+    color: #322A60;
+    font-weight: bold;
+}
+
+.atIcon {
+    height: 25px;
+    margin-right: 5px;
+    color: white;
+}
+
+.dateIcon {
+    height: 20px;
+    margin-right: 5px;
+}
+.descIcon {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.nameIcon {
+    height: 20px;
+    margin-right: 5px;
+}
+
+.mapIcon {
+    height: 25px;
+    margin-right: 5px;
+    padding-bottom: 3px;
+}
