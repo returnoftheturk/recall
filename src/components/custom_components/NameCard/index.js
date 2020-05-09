@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import icon from '../../../css/icons/256_15.png'
-import atIcon from '../../../css/icons/social.png'
 import mapIcon from '../../../css/icons/map.png'
 import nameIcon from '../../../css/icons/name_tag.png'
 import dateIcon from '../../../css/icons/date.png'
@@ -61,7 +60,7 @@ class ContactCard extends Component {
                         </div>
                         <div className="contactName">
                             <img src={nameIcon} alt="nameIcon" className="nameIcon"/>
-                            {this.shortenString(this.props.fullName,10)}
+                            {this.shortenString(this.props.fullName,12)}
                         </div>
                     </div>
                     {this.props.description && 
@@ -74,7 +73,7 @@ class ContactCard extends Component {
                         {this.props.meetingPlace && 
                             <div className='infoLocation'>
                                 <img src={mapIcon} alt="mapIcon" className="mapIcon"/>
-                                Montreal
+                                {this.props.meetingPlace}
                             </div>
                         }
                         {this.props.socials && 
@@ -94,7 +93,7 @@ ContactCard.propTypes = {
     description: PropTypes.string,
     socials: PropTypes.string,
     date: PropTypes.string,
-    // meetingPlace: PropTypes.string
+    meetingPlace: PropTypes.string
 }
 
 export default ContactCard;

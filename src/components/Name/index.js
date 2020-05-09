@@ -41,7 +41,6 @@ class NamePageBase extends Component {
     }
     handleFormSubmit = (fullName, meetingPlace, description, socials) => {
         this.setState({formShow: false})
-        console.log(fullName, meetingPlace, description, socials)
         this.props.firebase.createNewName(fullName, meetingPlace, description, socials, this.groupId).then(ref => {
             console.log(ref)
         }).catch(err => console.log(err))
@@ -57,7 +56,7 @@ class NamePageBase extends Component {
                         description={name.description}
                         socials={name.socials}
                         date={name.date}
-                        // meetingPlace={name.meetingPlace}
+                        meetingPlace={name.meetingPlace}
                     />
                 ))}
             </div>
