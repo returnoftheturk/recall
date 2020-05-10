@@ -56,29 +56,9 @@ html, body {
     width: 4rem;
     height: 4rem;
 }
-
-Link {
-    color: white;
-}
-
-/* .bottomNav {
-    width: inherit;
-}
-.stickToBottom {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-}
 .nameContainer {
-    margin-bottom: 50px;
+    margin-bottom: 65px;
 }
-
-.groupContainer {
-    margin-bottom: 50px;
-} */
-.groupContainer {
-    height: inherit;
-}
-.grow {
-    flex-grow: 1;
+ .groupContainer {
+    margin-bottom: 65px;
 }

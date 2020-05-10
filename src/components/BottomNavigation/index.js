@@ -12,9 +12,8 @@ import Tab from '@material-ui/core/Tab';
 import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import {withRouter} from 'react-router-dom';
-
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import GroupIcon from '@material-ui/icons/People';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -96,11 +95,6 @@ function BottomNavigation(props) {
                     <Typography className={classes.title} variant="h6" noWrap>
                     Recall
                     </Typography>
-                    {(value === 0 || value === 1) && 
-                        <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-                            <AddIcon />
-                        </Fab>
-                    }
                     
                     <div className={classes.grow} />
                     <Tabs 
@@ -109,9 +103,9 @@ function BottomNavigation(props) {
                         aria-label="simple tabs example"
                         indicatorColor="secondary"
                     >
-                        <Tab label="Group" component={Link} to={ROUTES.GROUP} {...a11yProps(0)} />
-                        <Tab label="Name" component={Link} to={ROUTES.NAME} {...a11yProps(1)} />
-                        <Tab label="ADMIN" component={Link} to={ROUTES.ADMIN} {...a11yProps(2)} />
+                        <Tab label="Groups" icon={<GroupIcon/>} component={Link} to={ROUTES.GROUP} {...a11yProps(0)} />
+                        <Tab label="Contacts" icon={<SearchIcon/>} component={Link} to={ROUTES.NAME} {...a11yProps(1)} />
+                        {/* <Tab label="ADMIN" component={Link} to={ROUTES.ADMIN} {...a11yProps(2)} /> */}
                     </Tabs>
                     <div className={classes.grow} />
                         

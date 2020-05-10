@@ -35,7 +35,7 @@ class App extends Component {
           <Route path={ROUTES.NAME} component={NamePage} />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
-          {/* <BottomNavBar /> */}
+          <BottomNavBar />
         </div>
       </Router>
     )

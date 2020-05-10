@@ -5,7 +5,7 @@ import {compose} from 'recompose';
 import {withRouter} from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
 import NameCard from '../custom_components/NameCard';
@@ -13,12 +13,16 @@ import '../../css/contactCard.css'
 
 const style = theme => ({
     fab: {
-      margin: 0,
-      top: 'auto',
-      left: 'auto',
-      bottom: '20px',
-      right: '40px',
-      position: 'fixed',
+        margin: 0,
+        marginBottom: '50px',
+        top: 'auto',
+        left: 'auto',
+        bottom: '25px',
+        right: '20px',
+        position: 'fixed',
+        [theme.breakpoints.up('md')]: {
+            right: '40px',
+        }
     }
 });
 

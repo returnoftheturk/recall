@@ -4,7 +4,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import GroupForm from '../custom_components/GroupForm';
 import GroupCard from '../custom_components/GroupCard';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import {compose} from 'recompose';
 import Spinner from 'react-bootstrap/Spinner';
 import {withRouter} from 'react-router-dom';
@@ -13,16 +13,16 @@ import '../../css/groupCard.css';
 
 const style = theme => ({
     fab: {
-      margin: 0,
-    //   marginBottom: '40px',
-      top: 'auto',
-      left: 'auto',
-      bottom: '20px',
-      right: '40px',
-      position: 'fixed',
-    },
-    grow: {
-        flexGrow: 1
+        margin: 0,
+        marginBottom: '50px',
+        top: 'auto',
+        left: 'auto',
+        bottom: '25px',
+        right: '20px',
+        position: 'fixed',
+        [theme.breakpoints.up('md')]: {
+            right: '40px',
+        }
     }
 });
 class GroupPageBase extends Component {    
@@ -90,7 +90,7 @@ class GroupPageBase extends Component {
         const {classes} = this.props;
         const {groups, loading} = this.state;
         return (
-            <div>
+            <div className="groupContainer">
                 <h1>Groups Page</h1>
                 <GroupForm 
                     show={this.state.formShow} 
