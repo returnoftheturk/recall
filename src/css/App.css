@@ -56,3 +56,19 @@ html, body {
     width: 4rem;
     height: 4rem;
 }
+
+.bottomNav {
+    width: inherit;
+}
+.stickToBottom {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+.nameContainer {
+    margin-bottom: 50px;
+}
+
+.groupContainer {
+    margin-bottom: 50px;
+}

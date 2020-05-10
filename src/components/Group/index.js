@@ -14,6 +14,7 @@ import '../../css/groupCard.css';
 const style = theme => ({
     fab: {
       margin: 0,
+      marginBottom: '40px',
       top: 'auto',
       left: 'auto',
       bottom: '20px',

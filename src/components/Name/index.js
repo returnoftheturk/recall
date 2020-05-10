@@ -88,7 +88,7 @@ class NamePageBase extends Component {
         const {names, loading} = this.state;
         console.log('names', names)
         return (
-            <div>
+            <div className="nameContainer">
                 <h1>
                     Names Page
                 </h1>

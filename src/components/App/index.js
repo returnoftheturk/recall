@@ -15,7 +15,7 @@ import {withAuthentication} from '../Session';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/App.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import BottomNavBar from '../BottomNavigation';
 
 class App extends Component {
   
@@ -35,6 +35,7 @@ class App extends Component {
           <Route path={ROUTES.NAME} component={NamePage} />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
+          <BottomNavBar />
         </div>
       </Router>
     )
