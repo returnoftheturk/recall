@@ -4,7 +4,7 @@ import SignOutButton from '../SignOut';
 
 import * as ROUTES from '../../constants/routes';
 import {AuthUserContext} from '../Session';
-
+import BottomNavBar from '../BottomNavigation';
 
 const Navigation = () => (
     <div>
@@ -15,23 +15,26 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-    <ul>
-        <li>
-            <Link to = {ROUTES.LANDING}> Landing</Link>
-        </li>
-        <li>
-            <Link to = {ROUTES.GROUP}> Groups</Link>
-        </li>
-        <li>
-            <Link to = {ROUTES.ACCOUNT}> Account </Link>
-        </li>
-        <li>
-            <Link to = {ROUTES.ADMIN}> Admin </Link>
-        </li>
-        <li>
-            <SignOutButton/>
-        </li>
-    </ul>
+    <div>
+        <ul>
+            <li>
+                <Link to = {ROUTES.LANDING}> Landing</Link>
+            </li>
+            <li>
+                <Link to = {ROUTES.GROUP}> Groups</Link>
+            </li>
+            <li>
+                <Link to = {ROUTES.ACCOUNT}> Account </Link>
+            </li>
+            <li>
+                <Link to = {ROUTES.ADMIN}> Admin </Link>
+            </li>
+            <li>
+                <SignOutButton/>
+            </li>
+        </ul>
+        <BottomNavBar />
+    </div>
 );
 
 const NavigationNonAuth = () => (

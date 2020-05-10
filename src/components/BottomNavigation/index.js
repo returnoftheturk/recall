@@ -14,6 +14,7 @@ import * as ROUTES from '../../constants/routes';
 import {withRouter} from 'react-router-dom';
 import GroupIcon from '@material-ui/icons/People';
 import SearchIcon from '@material-ui/icons/Search';
+import SignOutItem from '../SignOut'
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -70,8 +71,11 @@ function BottomNavigation(props) {
 
     const handleMenuClose = () => {
         setAnchorEl(null);
-        props.history.push(ROUTES.GROUP);
     };
+    const handleProfileClick = () => {
+        handleMenuClose();
+        props.history.push(ROUTES.ACCOUNT);
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -84,8 +88,8 @@ function BottomNavigation(props) {
         open={isMenuOpen}
         onClose={handleMenuClose}
     >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+        <SignOutItem/>
     </Menu>
 );
     return (
