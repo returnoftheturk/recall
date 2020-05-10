@@ -57,7 +57,11 @@ html, body {
     height: 4rem;
 }
 
-.bottomNav {
+Link {
+    color: white;
+}
+
+/* .bottomNav {
     width: inherit;
 }
 .stickToBottom {
@@ -71,4 +75,10 @@ html, body {
 
 .groupContainer {
     margin-bottom: 50px;
+} */
+.groupContainer {
+    height: inherit;
+}
+.grow {
+    flex-grow: 1;
 }

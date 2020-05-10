@@ -14,12 +14,15 @@ import '../../css/groupCard.css';
 const style = theme => ({
     fab: {
       margin: 0,
-      marginBottom: '40px',
+    //   marginBottom: '40px',
       top: 'auto',
       left: 'auto',
       bottom: '20px',
       right: '40px',
       position: 'fixed',
+    },
+    grow: {
+        flexGrow: 1
     }
 });
 class GroupPageBase extends Component {    

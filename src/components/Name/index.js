@@ -69,7 +69,7 @@ class NamePageBase extends Component {
     }
     componentDidMount(){
         if(this.groupId === undefined){
-            this.props.history.push(ROUTES.LANDING);
+            // this.props.history.push(ROUTES.LANDING);
         }else{
             this.setState({loading:true})
             this.getNames = this.props.firebase.names(this.groupId).onSnapshot(snapshot => {

@@ -1,31 +1,137 @@
-import React, {useState} from 'react';
-import {withRouter, Link} from 'react-router-dom';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import GroupIcon from '@material-ui/icons/Group';
+import {withRouter} from 'react-router-dom';
 
-function BottomNavBar(props){
-    const [value, setValue] = useState(0);
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
-    return (
-        <BottomNavigation
-            value={value}
-            onChange={e=>{setValue(e.target.value)}}
-            showLabels
-            className="classes.root stickToBottom"
-        >
-            <BottomNavigationAction 
-                label="groups" 
-                value="groups"
-                component={Link}
-                to={ROUTES.GROUP}
-                icon={<GroupIcon/>}
-                />
-        </BottomNavigation>
-    )
+const useStyles = makeStyles((theme) => ({
+    grow: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    appBar: {
+        top: 'auto',
+        bottom: 0,
+    },
+    title: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+        }
+    },
+    sectionDesktop: {
+        display: 'flex',
+    },
+    fabButton: {
+        position: 'absolute',
+        zIndex: 1,
+        top: -42,
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+    }
+}));
+
+function a11yProps(index) {
+    return {
+        id: `nav-tab-${index}`,
+        'aria-controls': `nav-tabpanel-${index}`,
+    };
 }
 
+function BottomNavigation(props) {
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const isMenuOpen = Boolean(anchorEl);
 
-export default withRouter(BottomNavBar);
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        props.history.push(ROUTES.GROUP);
+    };
+
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+    <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+    >
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+    </Menu>
+);
+    return (
+        <div>
+            <AppBar style={{ background: '#5878aa' }} position="fixed" className={classes.appBar}>
+                <Toolbar>
+                    <Typography className={classes.title} variant="h6" noWrap>
+                    Recall
+                    </Typography>
+                    {(value === 0 || value === 1) && 
+                        <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+                            <AddIcon />
+                        </Fab>
+                    }
+                    
+                    <div className={classes.grow} />
+                    <Tabs 
+                        value={value} 
+                        onChange={handleChange}
+                        aria-label="simple tabs example"
+                        indicatorColor="secondary"
+                    >
+                        <Tab label="Group" component={Link} to={ROUTES.GROUP} {...a11yProps(0)} />
+                        <Tab label="Name" component={Link} to={ROUTES.NAME} {...a11yProps(1)} />
+                        <Tab label="ADMIN" component={Link} to={ROUTES.ADMIN} {...a11yProps(2)} />
+                    </Tabs>
+                    <div className={classes.grow} />
+                        
+                    <div className={classes.sectionDesktop}>
+                        <IconButton
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                    </div>
+                </Toolbar>
+            </AppBar>
+            {renderMenu}
+        </div>
+    );
+}
+
+export default withRouter(BottomNavigation);
