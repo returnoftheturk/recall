@@ -56,3 +56,9 @@ html, body {
     width: 4rem;
     height: 4rem;
 }
+.nameContainer {
+    margin-bottom: 65px;
+}
+ .groupContainer {
+    margin-bottom: 65px;
+}

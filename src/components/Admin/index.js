@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {withFirebase} from '../Firebase';
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner';
+import {withAuthorization} from '../Session';
+
 
 class AdminPage extends Component {
     constructor(props){
@@ -59,6 +61,6 @@ const UserList = ({ users }) => (
       ))}
     </ul>
   );
+const condition = authUser => authUser != null;
 
-
-export default withFirebase(AdminPage);
+export default withAuthorization(condition)(AdminPage);

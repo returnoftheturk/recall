@@ -16,7 +16,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/App.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-
 class App extends Component {
   
   render(){
@@ -26,7 +25,6 @@ class App extends Component {
           <CssBaseline />
 
           <Navigation />
-          <hr/>
           <Route exact path={ROUTES.LANDING} component={LandingPage} />
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />
