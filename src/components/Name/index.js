@@ -45,9 +45,47 @@ class NamePageBase extends Component {
     }
     handleFormSubmit = (fullName, meetingPlace, description, socials) => {
         this.setState({formShow: false})
-        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, this.groupId).then(ref => {
-            console.log(ref)
+        const {creationDate, profileIcon} = this.getDate();
+        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, creationDate, profileIcon, this.groupId).then(ref => {
+            return {
+                fullName: fullName,
+                id: ref.id
+            }
+        }).then((ref) => {
+            const {fullName, id} = ref;
+            return this.getGenderProfileIcon(fullName, id);
+        }).then((ref)=>{
+            const {profileIcon, id} = ref;
+            return this.props.firebase.updateName({profileIcon}, id);
         }).catch(err => console.log(err))
+    }
+    getGenderProfileIcon = (fullName, id) => {
+        const firstName = fullName.split(' ')[0];
+        let profileIcon = "X";
+        return fetch('https://api.genderize.io?name=' + firstName).then(
+            response => response.json()
+        ).then(response =>{
+            console.log(response);
+            if(response.probability > 0.6){
+                const gender = response.gender;
+                if(gender === "male"){
+                    profileIcon = "m_" + Math.floor(Math.random() * 8)
+                }else if (gender === "female"){
+                    profileIcon = "f_" + Math.floor(Math.random() * 6)
+                }
+                return {profileIcon, id}
+            }else throw new Error("Low probability");
+        })
+    }
+    getDate(){
+        const date = new Date();
+        let profileIcon = 'X';
+        const creationDate = date.toISOString().slice(0,10);
+        console.log('CREATE DATE', creationDate);
+        return {
+            profileIcon,
+            creationDate
+        };
     }
     renderNameCards(){
         const {names} = this.state;
@@ -59,7 +97,8 @@ class NamePageBase extends Component {
                         fullName={name.fullName}
                         description={name.description}
                         socials={name.socials}
-                        date={name.date}
+                        date={name.creationDate}
+                        profileIcon={name.profileIcon}
                         meetingPlace={name.meetingPlace}
                     />
                 ))}
