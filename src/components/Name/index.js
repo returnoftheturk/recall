@@ -69,9 +69,9 @@ class NamePageBase extends Component {
             if(response.probability > 0.6){
                 const gender = response.gender;
                 if(gender === "male"){
-                    profileIcon = "m_" + Math.floor(Math.random() * 8)
+                    profileIcon = "m_" + Math.floor(Math.random() * 7 + 1);
                 }else if (gender === "female"){
-                    profileIcon = "f_" + Math.floor(Math.random() * 6)
+                    profileIcon = "f_" + Math.floor(Math.random() * 5 + 1);
                 }
                 return {profileIcon, id}
             }else throw new Error("Low probability");
