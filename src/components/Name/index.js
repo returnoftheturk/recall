@@ -65,7 +65,6 @@ class NamePageBase extends Component {
         return fetch('https://api.genderize.io?name=' + firstName).then(
             response => response.json()
         ).then(response =>{
-            console.log(response);
             if(response.probability > 0.6){
                 const gender = response.gender;
                 if(gender === "male"){
@@ -81,7 +80,6 @@ class NamePageBase extends Component {
         const date = new Date();
         let profileIcon = 'X';
         const creationDate = date.toISOString().slice(0,10);
-        console.log('CREATE DATE', creationDate);
         return {
             profileIcon,
             creationDate
