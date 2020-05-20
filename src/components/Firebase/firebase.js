@@ -48,15 +48,21 @@ class Firebase{
 
     names = (groupID) => this.db.collection('names').where("user","==",this.auth.currentUser.uid).where("groupID", "==", groupID);
 
-    createNewName = (fullName, meetingPlace, description, socials, groupID) => (this.db.collection('names').add({
+    createNewName = (fullName, meetingPlace, description, socials, creationDate, profileIcon, groupID) => (this.db.collection('names').add({
         fullName,
         meetingPlace,
         description,
         socials,
+        creationDate,
+        profileIcon,
         groupID,
         user: this.auth.currentUser.uid
-    }))
-
+    }));
+    updateName = (data, id) => (
+        this.db.collection('names').doc(id).set({
+            ...data
+        }, { merge: true })
+    );
 }
 
 export default Firebase;
