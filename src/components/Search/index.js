@@ -8,6 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
 import '../../css/contactCard.css';
 import {getGenderProfileIcon, getDate, renderNameCards} from '../Name';
+import TextField from '@material-ui/core/TextField';
 
 const style = theme => ({
     fab: {
@@ -30,7 +31,8 @@ class SearchPageBase extends Component {
         this.state = {
             formShow : false,
             names: [],
-            loading: false
+            loading: false,
+            filter: ''
         }
     }
     handleFormShow = () => {
@@ -56,14 +58,23 @@ class SearchPageBase extends Component {
             return this.props.firebase.updateName({profileIcon}, id);
         }).catch(err => console.log(err))
     }
-    componentWillUnmount(){
-        if(this.getAllNames){
-            this.getAllNames();
+
+    componentDidUpdate(prevProps, prevState){
+        const {filter, names} = this.state;
+        if(filter !== prevState.filter){
+            names.forEach(name => {
+                if(name.fullName.toLowerCase().indexOf(filter.toLowerCase()) === -1){
+                    name.hide = true
+                }else{
+                    name.hide = false
+                } 
+            });
+            this.setState({names});
         }
     }
     componentDidMount(){
         this.setState({loading:true})
-        this.getAllNames = this.props.firebase.allNames().onSnapshot(snapshot => {
+        this.props.firebase.allNames().get().then(snapshot => {
             const names = snapshot.docs.map(name => (
                 {
                     id: name.id,
@@ -75,13 +86,20 @@ class SearchPageBase extends Component {
     }
     render(){
         const {classes} = this.props;
-        const {names, loading} = this.state;
-        console.log('search', names)
+        const {names, loading, filter} = this.state;
+        // console.log('search', names)
+        // console.log('filter', filter);
         return (
             <div className="nameContainer">
                 <h1>
                     Search Page
                 </h1>
+                <TextField 
+                    id="outlined-basic" 
+                    label="Outlined" 
+                    variant="outlined"
+                    onChange={e=>{this.setState({filter:e.target.value})}}    
+                />
                 <NameForm 
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}

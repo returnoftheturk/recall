@@ -54,17 +54,19 @@ export const getDate = () => {
 export const renderNameCards = (names) => {
     return (
         <div className="contact-list">
-            {names.map(name => (
-                <NameCard
-                    key={name.id}
-                    fullName={name.fullName}
-                    description={name.description}
-                    socials={name.socials}
-                    date={name.creationDate}
-                    profileIcon={name.profileIcon}
-                    meetingPlace={name.meetingPlace}
-                />
-            ))}
+            {names.map(name => {
+                if(!name.hide){
+                    return <NameCard
+                        key={name.id}
+                        fullName={name.fullName}
+                        description={name.description}
+                        socials={name.socials}
+                        date={name.creationDate}
+                        profileIcon={name.profileIcon}
+                        meetingPlace={name.meetingPlace}
+                    />
+                }else return null;
+            })}
         </div>
     )
 }
