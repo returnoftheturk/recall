@@ -32,20 +32,30 @@ class SearchPageBase extends Component {
             formShow : false,
             names: [],
             loading: false,
-            filter: ''
+            filter: '',
+            groupOptions: []
         }
     }
+
     handleFormShow = () => {
-        this.setState({formShow: true})
+        this.props.firebase.groups().get().then(snapshot=> (   
+            snapshot.docs.map(group => (
+                <option value={group.id} key={group.id}>{group.data().name}</option>
+            ))
+        )).then(groupOptions => 
+            this.setState({groupOptions, formShow: true})
+        ).catch(err=>{
+            console.log(err);
+        })
     }
     handleFormHide = () => {
         this.setState({formShow: false})
     }
     // TODO
-    handleFormSubmit = (fullName, meetingPlace, description, socials) => {
+    handleFormSubmit = (fullName, meetingPlace, description, socials, groupID) => {
         this.setState({formShow: false})
         const {creationDate, profileIcon} = getDate();
-        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, creationDate, profileIcon, this.groupId).then(ref => {
+        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, creationDate, profileIcon, groupID).then(ref => {
             return {
                 fullName: fullName,
                 id: ref.id
@@ -56,6 +66,8 @@ class SearchPageBase extends Component {
         }).then((ref)=>{
             const {profileIcon, id} = ref;
             return this.props.firebase.updateName({profileIcon}, id);
+        }).then(()=>{
+            this.refreshNames();
         }).catch(err => console.log(err))
     }
 
@@ -72,8 +84,7 @@ class SearchPageBase extends Component {
             this.setState({names});
         }
     }
-    componentDidMount(){
-        this.setState({loading:true})
+    refreshNames(){
         this.props.firebase.allNames().get().then(snapshot => {
             const names = snapshot.docs.map(name => (
                 {
@@ -82,28 +93,36 @@ class SearchPageBase extends Component {
                 }
             ))
             this.setState({names: names, loading:false})
-        })
+        }).catch(err=>{console.log(err)})
+    }
+    componentDidMount(){
+        this.setState({loading:true})
+        this.refreshNames();
     }
     render(){
         const {classes} = this.props;
-        const {names, loading, filter} = this.state;
-        // console.log('search', names)
-        // console.log('filter', filter);
+        const {names, loading, groupOptions} = this.state;
         return (
             <div className="nameContainer">
-                <h1>
-                    Search Page
-                </h1>
-                <TextField 
-                    id="outlined-basic" 
-                    label="Outlined" 
-                    variant="outlined"
-                    onChange={e=>{this.setState({filter:e.target.value})}}    
-                />
-                <NameForm 
-                    show={this.state.formShow} 
-                    handleFormHide={this.handleFormHide}
-                    handleFormSubmit={this.handleFormSubmit} />
+                <div className = "searchTitle">
+                    <h1>
+                        Contacts
+                    </h1>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Contact Name" 
+                        variant="outlined"
+                        onChange={e=>{this.setState({filter:e.target.value})}}    
+                    />
+                </div>
+                <div className="modal">
+                    <NameForm
+                        show={this.state.formShow} 
+                        handleFormHide={this.handleFormHide}
+                        handleFormSubmit={this.handleFormSubmit}
+                        groupOptions = {groupOptions} />
+                </div>
+                
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
                     names.length > 0 ? 
