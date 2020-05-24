@@ -51,7 +51,6 @@ class SearchPageBase extends Component {
     handleFormHide = () => {
         this.setState({formShow: false})
     }
-    // TODO
     handleFormSubmit = (fullName, meetingPlace, description, socials, groupID) => {
         this.setState({formShow: false})
         const {creationDate, profileIcon} = getDate();
@@ -66,8 +65,6 @@ class SearchPageBase extends Component {
         }).then((ref)=>{
             const {profileIcon, id} = ref;
             return this.props.firebase.updateName({profileIcon}, id);
-        }).then(()=>{
-            this.refreshNames();
         }).catch(err => console.log(err))
     }
 
@@ -84,8 +81,9 @@ class SearchPageBase extends Component {
             this.setState({names});
         }
     }
-    refreshNames(){
-        this.props.firebase.allNames().get().then(snapshot => {
+    componentDidMount(){
+        this.setState({loading:true})
+        this.props.firebase.allNames().onSnapshot(snapshot => {
             const names = snapshot.docs.map(name => (
                 {
                     id: name.id,
@@ -93,11 +91,7 @@ class SearchPageBase extends Component {
                 }
             ))
             this.setState({names: names, loading:false})
-        }).catch(err=>{console.log(err)})
-    }
-    componentDidMount(){
-        this.setState({loading:true})
-        this.refreshNames();
+        })
     }
     render(){
         const {classes} = this.props;
