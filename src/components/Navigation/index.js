@@ -122,7 +122,7 @@ function BottomNavigation(props) {
                         indicatorColor="secondary"
                     >
                         <Tab label="Groups" icon={<GroupIcon/>} component={Link} to={ROUTES.GROUP} {...a11yProps(0)} />
-                        <Tab label="Contacts" icon={<SearchIcon/>} component={Link} to={ROUTES.NAME} {...a11yProps(1)} />
+                        <Tab label="Contacts" icon={<SearchIcon/>} component={Link} to={ROUTES.SEARCH} {...a11yProps(1)} />
                         {/* <Tab label="ADMIN" component={Link} to={ROUTES.ADMIN} {...a11yProps(2)} /> */}
                     </Tabs>
                     <div className={classes.grow} />

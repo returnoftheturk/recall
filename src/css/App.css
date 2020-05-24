@@ -62,3 +62,11 @@ html, body {
  .groupContainer {
     margin-bottom: 65px;
 }
+.searchTitle {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+body.modal-open {
+    padding-right: 0 !important;
+}
