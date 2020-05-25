@@ -33,7 +33,7 @@ html, body {
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row;
-    margin: 0 -5px;
+    margin: 0;
 }
 @media all and (max-width: 500px) {
     .group-list, .contact-list{

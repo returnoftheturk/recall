@@ -17,6 +17,11 @@ import mapIcon from '../../../css/icons/map.png'
 import nameIcon from '../../../css/icons/name_tag.png'
 import dateIcon from '../../../css/icons/date.png'
 
+export const shortenString = (toShorten,maxLen) => {
+    return toShorten.length > maxLen ? 
+        toShorten.substring(0,maxLen) + '...' : toShorten;
+}
+
 class ContactCard extends Component {
     constructor(props){
         super(props);
@@ -55,10 +60,7 @@ class ContactCard extends Component {
         const names = this.props.fullName.toUpperCase().split(' ');
         return [names[0][0], names[1] ? names[1][0] : '']
     }
-    shortenString(toShorten,maxLen){
-        return toShorten.length > maxLen ? 
-            toShorten.substring(0,maxLen) + '...' : toShorten;
-    }
+    
     render(){
         const styles = {
             frontCard: {
@@ -85,13 +87,13 @@ class ContactCard extends Component {
                         </div>
                         <div className="contactName">
                             <img src={nameIcon} alt="nameIcon" className="nameIcon"/>
-                            {this.shortenString(this.props.fullName,12)}
+                            {shortenString(this.props.fullName,12)}
                         </div>
                     </div>
                     {this.props.description && 
                         <div className="infoDescription">
                             {/* <img src={descIcon} alt="descIcon" className="descIcon"/> */}
-                            {this.shortenString(this.props.description, 120)}
+                            {shortenString(this.props.description, 120)}
                         </div>
                     }
                     <div className='infoBottomRow'>
@@ -103,7 +105,7 @@ class ContactCard extends Component {
                         }
                         {this.props.socials && 
                             <div className='title-white infoSocials'>
-                                @{this.shortenString(this.props.socials,15)}
+                                @{shortenString(this.props.socials,15)}
                             </div>
                         }
                     </div>

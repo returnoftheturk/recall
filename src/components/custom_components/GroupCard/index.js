@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import { SvgIcon } from '@material-ui/core';
+import {shortenString} from '../NameCard';
 
 const GroupCard = props => {
     const handleClick = () => {
@@ -8,12 +11,21 @@ const GroupCard = props => {
 
     return (
         <div className="groupCard" onClick = {handleClick}>
-            <div className="group_name title-black">
-                <p>{props.name}</p>
+            <div className="titleRow">
+                <div className="group_name title-black">
+                    {props.name}
+                </div>
+                <div className="nameCount title-black">
+                    8
+                    <SvgIcon component={EmojiPeopleIcon} fontSize='large'/>
+                </div>
+                <div className="dot" style={{backgroundColor:"#17329f"}}>
+                </div>
             </div>
-            <div className="group_desc title-black">
-                <p>{props.description}</p>
+            <div className="descRow">
+                {shortenString('This is oging ot be some super long descpriotn and wer are onkaslna tying to see how long we can go and if were going to verlwlwo, its a real possibliyt man i mean i dunno', 120)}
             </div>
+            
         </div>
     )
 }
