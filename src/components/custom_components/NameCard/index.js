@@ -69,13 +69,22 @@ class ContactCard extends Component {
             }
         }
         const [firstInitial, secondInitial] = this.getInitials();
-
         return (
             <div className="cardContainer" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                 <div className="contactCard" style={styles.frontCard}>
                     <div className="contactIcon">
                         <img src={this.iconsMap[this.props.profileIcon]} alt="profileIcon"/>
-                        <div className="logo"><span className="fat">{firstInitial}</span><span className="skinny">{secondInitial}</span></div>		
+                        <div 
+                            className="logo" 
+                            style={{background:this.props.gColor ? this.props.gColor : '#6acd79'}}
+                        >
+                            <span className="fat">
+                                {firstInitial}
+                            </span>
+                            <span className="skinny">
+                                {secondInitial}
+                            </span>
+                        </div>		
                     </div>
                 </div>
 

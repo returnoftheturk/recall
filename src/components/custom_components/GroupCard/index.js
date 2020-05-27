@@ -19,7 +19,7 @@ const GroupCard = props => {
                     8
                     <SvgIcon component={EmojiPeopleIcon} fontSize='large'/>
                 </div>
-                <div className="dot" style={{backgroundColor:"#17329f"}}>
+                <div className="dot" style={{backgroundColor:props.gColor}}>
                 </div>
             </div>
             <div className="descRow">
