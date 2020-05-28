@@ -13,7 +13,7 @@ const GroupCard = props => {
         <div className="groupCard" onClick = {handleClick}>
             <div className="titleRow">
                 <div className="group_name title-black">
-                    {props.name}
+                    {shortenString(props.name, 12)}
                 </div>
                 <div className="nameCount title-black">
                     8
@@ -23,7 +23,7 @@ const GroupCard = props => {
                 </div>
             </div>
             <div className="descRow">
-                {shortenString('This is oging ot be some super long descpriotn and wer are onkaslna tying to see how long we can go and if were going to verlwlwo, its a real possibliyt man i mean i dunno', 120)}
+                {shortenString(props.description, 120)}
             </div>
             
         </div>

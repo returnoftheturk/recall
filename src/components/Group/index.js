@@ -58,8 +58,8 @@ class GroupPageBase extends Component {
         this.props.firebase.createNewGroup(groupName, description).then(ref=>(
             ref.id
         )).then(id=> {
-            const bColor = stringToColor(id);
-            return this.props.firebase.updateGroup({bColor}, id)
+            const gColor = stringToColor(id);
+            return this.props.firebase.updateGroup({gColor}, id)
         }).catch(err=>{
             console.log(err)
         })
@@ -96,7 +96,7 @@ class GroupPageBase extends Component {
                         key={group.id}
                         name={group.name}
                         description={group.description}
-                        gColor={group.bColor}
+                        gColor={group.gColor}
                     />
                 ))}
             </div>
