@@ -94,11 +94,14 @@ class NamePageBase extends Component {
         this.setState({formShow: false})
         const {creationDate, profileIcon} = getDate();
         const gColor = stringToColor(this.groupId);
-        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, creationDate, profileIcon, this.groupId, gColor).then(ref => {
-            return {
-                fullName: fullName,
-                id: ref.id
-            }
+        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, 
+                creationDate, profileIcon, this.groupId, gColor).then(ref => {
+            return this.props.firebase.incrementNameCount(this.groupId).then(()=>(
+                {
+                    fullName: fullName,
+                    id: ref.id
+                }
+            ))
         }).then((ref) => {
             const {fullName, id} = ref;
             return getGenderProfileIcon(fullName, id);

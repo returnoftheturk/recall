@@ -11,7 +11,8 @@ class GroupForm extends Component {
         super(props);
         this.state = {...INITIAL_STATE}
     }
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         const {groupName, description} = this.state;
         if (groupName !== '') {
             this.props.handleFormSubmit(groupName, description);
@@ -34,7 +35,7 @@ class GroupForm extends Component {
                     <Modal.Title>New Group</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="groupName">
                             <Form.Label>Group Name</Form.Label>
                             <Form.Control

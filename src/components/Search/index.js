@@ -56,11 +56,14 @@ class SearchPageBase extends Component {
         this.setState({formShow: false})
         const {creationDate, profileIcon} = getDate();
         const gColor = stringToColor(groupID);
-        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, creationDate, profileIcon, groupID, gColor).then(ref => {
-            return {
-                fullName: fullName,
-                id: ref.id
-            }
+        this.props.firebase.createNewName(fullName, meetingPlace, description, socials,
+                creationDate, profileIcon, groupID, gColor).then(ref => {
+            return this.props.firebase.incrementNameCount(groupID).then(()=>(
+                {
+                    fullName: fullName,
+                    id: ref.id
+                }
+            ))
         }).then((ref) => {
             const {fullName, id} = ref;
             return getGenderProfileIcon(fullName, id);

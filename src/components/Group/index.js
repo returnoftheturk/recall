@@ -87,6 +87,7 @@ class GroupPageBase extends Component {
     }
     renderGroupCards(){
         const {groups} = this.state;
+        console.log(groups);
         return (
             <div className="group-list">
                 {groups.map(group => (
@@ -97,6 +98,7 @@ class GroupPageBase extends Component {
                         name={group.name}
                         description={group.description}
                         gColor={group.gColor}
+                        nameCount={group.nameCount}
                     />
                 ))}
             </div>

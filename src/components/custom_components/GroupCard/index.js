@@ -13,10 +13,10 @@ const GroupCard = props => {
         <div className="groupCard" onClick = {handleClick}>
             <div className="titleRow">
                 <div className="group_name title-black">
-                    {shortenString(props.name, 12)}
+                    {shortenString(props.name, 11)}
                 </div>
                 <div className="nameCount title-black">
-                    8
+                    {props.nameCount}
                     <SvgIcon component={EmojiPeopleIcon} fontSize='large'/>
                 </div>
                 <div className="dot" style={{backgroundColor:props.gColor}}>

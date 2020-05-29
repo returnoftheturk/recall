@@ -14,7 +14,8 @@ class NameForm extends Component{
         super(props);
         this.state = {...INITIAL_STATE};
     }
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault()
         const {fullName, meetingPlace, description, socials, groupID} = this.state;
         
         if(this.props.groupOptions && fullName !== '' && groupID !== ''){
@@ -43,7 +44,7 @@ class NameForm extends Component{
                     <Modal.Title>New Contact</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Form.Row>
                             <Col>
                                 <Form.Group controlId="fullName">
