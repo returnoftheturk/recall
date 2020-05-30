@@ -9,6 +9,7 @@ import NameForm from '../custom_components/NameForm';
 import '../../css/contactCard.css';
 import {getGenderProfileIcon, getDate, renderNameCards} from '../Name';
 import TextField from '@material-ui/core/TextField';
+import {stringToColor} from '../Group';
 
 const style = theme => ({
     fab: {
@@ -54,11 +55,15 @@ class SearchPageBase extends Component {
     handleFormSubmit = (fullName, meetingPlace, description, socials, groupID) => {
         this.setState({formShow: false})
         const {creationDate, profileIcon} = getDate();
-        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, creationDate, profileIcon, groupID).then(ref => {
-            return {
-                fullName: fullName,
-                id: ref.id
-            }
+        const gColor = stringToColor(groupID);
+        this.props.firebase.createNewName(fullName, meetingPlace, description, socials,
+                creationDate, profileIcon, groupID, gColor).then(ref => {
+            return this.props.firebase.incrementNameCount(groupID).then(()=>(
+                {
+                    fullName: fullName,
+                    id: ref.id
+                }
+            ))
         }).then((ref) => {
             const {fullName, id} = ref;
             return getGenderProfileIcon(fullName, id);

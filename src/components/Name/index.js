@@ -10,6 +10,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
 import NameCard from '../custom_components/NameCard';
 import '../../css/contactCard.css';
+import {stringToColor} from '../Group';
 
 const style = theme => ({
     fab: {
@@ -64,6 +65,7 @@ export const renderNameCards = (names) => {
                         date={name.creationDate}
                         profileIcon={name.profileIcon}
                         meetingPlace={name.meetingPlace}
+                        gColor={name.gColor}
                     />
                 }else return null;
             })}
@@ -91,11 +93,15 @@ class NamePageBase extends Component {
     handleFormSubmit = (fullName, meetingPlace, description, socials) => {
         this.setState({formShow: false})
         const {creationDate, profileIcon} = getDate();
-        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, creationDate, profileIcon, this.groupId).then(ref => {
-            return {
-                fullName: fullName,
-                id: ref.id
-            }
+        const gColor = stringToColor(this.groupId);
+        this.props.firebase.createNewName(fullName, meetingPlace, description, socials, 
+                creationDate, profileIcon, this.groupId, gColor).then(ref => {
+            return this.props.firebase.incrementNameCount(this.groupId).then(()=>(
+                {
+                    fullName: fullName,
+                    id: ref.id
+                }
+            ))
         }).then((ref) => {
             const {fullName, id} = ref;
             return getGenderProfileIcon(fullName, id);

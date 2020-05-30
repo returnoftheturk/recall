@@ -25,6 +25,19 @@ const style = theme => ({
         }
     }
 });
+
+export const stringToColor = (str) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    let colour = '#';
+    for (let i = 0; i < 3; i++) {
+      const value = (hash >> (i * 8)) & 0xFF;
+      colour += ('00' + value.toString(16)).substr(-2);
+    }
+    return colour;
+}
 class GroupPageBase extends Component {    
     constructor(props){
         super(props);
@@ -42,9 +55,11 @@ class GroupPageBase extends Component {
     }
     handleFormSubmit = (groupName, description) => {
         this.setState({formShow: false})
-        this.props.firebase.createNewGroup(groupName, description).then(ref=>{
-            // TODO: Possibly update state to refresh with new groups?
-            console.log(ref)
+        this.props.firebase.createNewGroup(groupName, description).then(ref=>(
+            ref.id
+        )).then(id=> {
+            const gColor = stringToColor(id);
+            return this.props.firebase.updateGroup({gColor}, id)
         }).catch(err=>{
             console.log(err)
         })
@@ -81,6 +96,8 @@ class GroupPageBase extends Component {
                         key={group.id}
                         name={group.name}
                         description={group.description}
+                        gColor={group.gColor}
+                        nameCount={group.nameCount}
                     />
                 ))}
             </div>

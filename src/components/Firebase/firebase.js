@@ -11,7 +11,7 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID,
     measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
-
+const increment = app.firestore.FieldValue.increment(1);
 // Initialize Firebase
 class Firebase{
     constructor(){
@@ -41,7 +41,8 @@ class Firebase{
     createNewGroup = (groupName, groupDesc) => (this.db.collection('groups').add({
         name: groupName,
         description: groupDesc,
-        user: this.auth.currentUser.uid
+        user: this.auth.currentUser.uid,
+        nameCount: 0
     }));
 
     groups = () => (this.db.collection('groups').where("user","==",this.auth.currentUser.uid));
@@ -50,7 +51,7 @@ class Firebase{
 
     allNames = () => this.db.collection('names').where("user","==",this.auth.currentUser.uid);
 
-    createNewName = (fullName, meetingPlace, description, socials, creationDate, profileIcon, groupID) => (this.db.collection('names').add({
+    createNewName = (fullName, meetingPlace, description, socials, creationDate, profileIcon, groupID, gColor) => (this.db.collection('names').add({
         fullName,
         meetingPlace,
         description,
@@ -58,10 +59,22 @@ class Firebase{
         creationDate,
         profileIcon,
         groupID,
+        gColor,
         user: this.auth.currentUser.uid
     }));
+    
+    incrementNameCount = (groupID) => (
+        this.db.collection('groups').doc(groupID).update({nameCount: increment})
+    );
+
     updateName = (data, id) => (
         this.db.collection('names').doc(id).set({
+            ...data
+        }, { merge: true })
+    );
+    
+    updateGroup = (data, id) => (
+        this.db.collection('groups').doc(id).set({
             ...data
         }, { merge: true })
     );

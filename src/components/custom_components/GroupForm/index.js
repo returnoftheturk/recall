@@ -11,7 +11,8 @@ class GroupForm extends Component {
         super(props);
         this.state = {...INITIAL_STATE}
     }
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         const {groupName, description} = this.state;
         if (groupName !== '') {
             this.props.handleFormSubmit(groupName, description);
@@ -23,6 +24,22 @@ class GroupForm extends Component {
     handleClose = () => {
         this.props.handleFormHide();
         this.setState({...INITIAL_STATE})
+    }
+
+    handleEscSubmit = (e) => {
+        if (e.key === 'Escape'){
+            this.handleClose();
+        }
+        else if(e.key === 'Enter'){
+            this.handleSubmit(e);
+        }
+    }
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.handleEscSubmit, false);
+    }
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.handleEscSubmit, false);
     }
     
     render(){
