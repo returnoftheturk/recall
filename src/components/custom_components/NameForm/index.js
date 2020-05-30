@@ -15,9 +15,8 @@ class NameForm extends Component{
         this.state = {...INITIAL_STATE};
     }
     handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         const {fullName, meetingPlace, description, socials, groupID} = this.state;
-        
         if(this.props.groupOptions && fullName !== '' && groupID !== ''){
             this.props.handleFormSubmit(fullName, meetingPlace, description, socials, groupID);
             this.setState({...INITIAL_STATE});    
@@ -31,6 +30,21 @@ class NameForm extends Component{
     handleClose = () => {
         this.props.handleFormHide();
         this.setState({...INITIAL_STATE});
+    }
+    handleEscSubmit = (e) => {
+        if (e.key === 'Escape'){
+            this.handleClose();
+        }
+        else if(e.key === 'Enter'){
+            this.handleSubmit(e);
+        }
+    }
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.handleEscSubmit, false);
+    }
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.handleEscSubmit, false);
     }
     render(){
         const{fullName, touched, groupID} = this.state;
@@ -53,7 +67,8 @@ class NameForm extends Component{
                                         isInvalid={invalidName && touched}
                                         type="text"
                                         value={this.state.fullName}
-                                        onChange={e=>{this.setState({fullName:e.target.value})}}/>
+                                        onChange={e=>{this.setState({fullName:e.target.value})}}
+                                        />
 
                                     <Form.Control.Feedback type="invalid"> Contact Name is required</Form.Control.Feedback>
                                 </Form.Group>
@@ -94,7 +109,8 @@ class NameForm extends Component{
                                     <Form.Control 
                                         type="text"
                                         value={this.state.meetingPlace}
-                                        onChange={e=>{this.setState({meetingPlace:e.target.value})}}/>
+                                        onChange={e=>{this.setState({meetingPlace:e.target.value})}}
+                                        />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -103,7 +119,8 @@ class NameForm extends Component{
                                     <Form.Control 
                                         type="text"
                                         value={this.state.socials}
-                                        onChange={e=>{this.setState({socials:e.target.value})}}/>
+                                        onChange={e=>{this.setState({socials:e.target.value})}}
+                                        />
                                 </Form.Group>
                             </Col>
                         </Form.Row>

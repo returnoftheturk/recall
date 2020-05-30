@@ -87,7 +87,6 @@ class GroupPageBase extends Component {
     }
     renderGroupCards(){
         const {groups} = this.state;
-        console.log(groups);
         return (
             <div className="group-list">
                 {groups.map(group => (

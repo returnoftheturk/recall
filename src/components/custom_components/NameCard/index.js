@@ -102,7 +102,7 @@ class ContactCard extends Component {
                     {this.props.description && 
                         <div className="infoDescription">
                             {/* <img src={descIcon} alt="descIcon" className="descIcon"/> */}
-                            {shortenString(this.props.description, 120)}
+                            {shortenString(this.props.description, 100)}
                         </div>
                     }
                     <div className='infoBottomRow'>

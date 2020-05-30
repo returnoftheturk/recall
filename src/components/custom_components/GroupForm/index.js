@@ -25,6 +25,22 @@ class GroupForm extends Component {
         this.props.handleFormHide();
         this.setState({...INITIAL_STATE})
     }
+
+    handleEscSubmit = (e) => {
+        if (e.key === 'Escape'){
+            this.handleClose();
+        }
+        else if(e.key === 'Enter'){
+            this.handleSubmit(e);
+        }
+    }
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.handleEscSubmit, false);
+    }
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.handleEscSubmit, false);
+    }
     
     render(){
         const {groupName, touched} = this.state;
@@ -35,7 +51,7 @@ class GroupForm extends Component {
                     <Modal.Title>New Group</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form>
                         <Form.Group controlId="groupName">
                             <Form.Label>Group Name</Form.Label>
                             <Form.Control
