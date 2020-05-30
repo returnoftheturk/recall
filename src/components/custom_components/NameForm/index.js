@@ -58,7 +58,7 @@ class NameForm extends Component{
                     <Modal.Title>New Contact</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form>
                         <Form.Row>
                             <Col>
                                 <Form.Group controlId="fullName">
