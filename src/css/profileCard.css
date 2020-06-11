@@ -1,0 +1,71 @@
+.profileCard:hover{
+    transform: translate(-50%, -50%) scale(0.97, 0.97);
+    box-shadow: 3px 3px 20px 7px rgba(0,0,0,0.25), 
+        -3px -3px 20px 7px rgba(0,0,0,0.22);
+}
+.profileCard {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    height:400px;
+	width:300px;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.25), -2px -2px 15px 3px rgba(0,0,0,0.22);
+    transition: 0.3s linear;
+    background-color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.icon{
+    height: 125px;
+}
+.profileTopRow {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+}
+.profileName {
+    height: 125px;
+    width: 125px;
+    border-radius: 4px;
+    display: inline-block;
+    color: #fff;
+    padding: 0 0.1em 0 .1em;
+    border: 4px solid #fff;
+    position: relative;
+    pointer-events: none;
+    align-items: center;
+    font-size: 2em;	
+}
+
+.profileDescription {
+    width: inherit;
+    height: inherit;
+    text-align: left;
+    position: relative;
+    align-items: left;
+    flex-grow: 2;
+    color: #FDE3A7;
+    background: yellow;
+    font-size: 18px;
+    word-wrap    : normal;
+    overflow-wrap: break-word;
+}
+
+.profileBottomRow {
+    width: inherit;
+    height: inherit;
+    background: green;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+}
