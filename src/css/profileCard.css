@@ -1,8 +1,3 @@
-.profileCard:hover{
-    transform: translate(-50%, -50%) scale(0.97, 0.97);
-    box-shadow: 3px 3px 20px 7px rgba(0,0,0,0.25), 
-        -3px -3px 20px 7px rgba(0,0,0,0.22);
-}
 .profileCard {
     position: absolute;
     left: 50%;
@@ -49,15 +44,16 @@
 .profileDescription {
     width: inherit;
     height: inherit;
-    text-align: left;
+    text-align: center;
     position: relative;
     align-items: left;
     flex-grow: 2;
-    color: #FDE3A7;
+    color: #1a2b91;
     background: yellow;
-    font-size: 18px;
+    font-size: 25px;
     word-wrap    : normal;
     overflow-wrap: break-word;
+    padding: 5px;
 }
 
 .profileBottomRow {
