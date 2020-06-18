@@ -4,8 +4,9 @@
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    height:400px;
-	width:300px;
+    /* max-height:300px; */
+    height: auto;
+    max-width:300px;
     box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.25), -2px -2px 15px 3px rgba(0,0,0,0.22);
     transition: 0.3s linear;
     background-color: black;
@@ -13,6 +14,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    background-color: black
 }
 .icon{
     height: 125px;
@@ -25,20 +27,46 @@
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-    background: white;
+    padding: 10px;
 }
 .profileName {
-    height: 125px;
-    width: 125px;
+    height: auto;
+    width: 150px;
     border-radius: 4px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     color: #fff;
     padding: 0 0.1em 0 .1em;
-    border: 4px solid #fff;
+    /* border: 2px solid #fff; */
     position: relative;
     pointer-events: none;
     align-items: center;
     font-size: 2em;	
+    padding: 5px;
+    
+    word-wrap    : normal;
+    overflow-wrap: break-word;
+
+}
+
+.firstName {
+    text-align: center;
+    
+    width: inherit;
+    height: inherit;
+    
+    /* font-size: 2em;	 */
+
+
+}
+.lastName {
+    
+    width: inherit;
+    height: inherit;
+    /* font-size: 2em;	 */
+
+
 }
 
 .profileDescription {
@@ -48,12 +76,17 @@
     position: relative;
     align-items: left;
     flex-grow: 2;
-    color: #1a2b91;
-    background: yellow;
     font-size: 25px;
     word-wrap    : normal;
     overflow-wrap: break-word;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.userEmail {
+    font-size: 25px;
+    color: white;
 }
 
 .profileBottomRow {

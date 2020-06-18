@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {withAuthorization, AuthUserContext} from '../Session';
 import '../../css/profileCard.css';
 import n_1 from '../../css/icons/n_1.png';
 import Alert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 import {shortenString} from '../custom_components/NameCard';
 
-class AccountPage extends Component {
+class ProfileCard extends Component {
     constructor(props){
         super(props);
         this.handleForgotEmail = this.handleForgotEmail.bind(this);
@@ -18,8 +17,7 @@ class AccountPage extends Component {
     }
 
     handleForgotEmail(){
-        const authUser = this.context;
-        const email = authUser.email;
+        const email = this.props.email;
         this.props.firebase.doPasswordReset(email).then(()=>{
             this.setState({emailSent: true, closed: false});
         }).catch(err=>{
@@ -28,16 +26,14 @@ class AccountPage extends Component {
         })
     }
     render(){
-        const authUser = this.context;
         const {emailSent, closed, error} = this.state;
-        console.log('authuser', authUser);
         return(
             <div className="profileContainer" >
                 {emailSent && !closed && 
                     <Alert severity="success"
                         onClose={()=>{this.setState({closed: true})}}
                     >
-                            Password reset email successfully sent to: {authUser.email}
+                            Password reset email successfully sent to: {this.props.email}
                     </Alert>
                 }
                 {error && !closed && 
@@ -76,9 +72,6 @@ class AccountPage extends Component {
             </div>
         )
     }
-
 }
-AccountPage.contextType = AuthUserContext;
-const condition = authUser => authUser != null;
 
-export default withAuthorization(condition)(AccountPage);
+export default ProfileCard;
