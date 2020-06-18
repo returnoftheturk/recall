@@ -3,6 +3,7 @@ import {withAuthorization, AuthUserContext} from '../Session';
 import '../../css/profileCard.css';
 import Alert from '@material-ui/lab/Alert';
 import ProfileCard from '../custom_components/ProfileCard'
+import {getGenderProfileIcon} from '../Name';
 
 const INITIAL_STATE = {
     emailSent: false,
@@ -26,6 +27,22 @@ class AccountPage extends Component {
             this.setState({
                 ...snapshot.data()
             })
+            
+            return snapshot;
+        }).then(snapshot=>{
+            const {firstName, profileIcon} = snapshot.data();
+            const {id} = snapshot;
+            if(!profileIcon){
+                return getGenderProfileIcon(firstName,id);
+            }else return
+        }).then(ref=>{
+            if (!ref) return
+            else{
+                const {profileIcon, id} = ref;
+                return this.props.firebase.user(id).set({
+                    profileIcon
+                }, { merge: true })
+            }
         }).catch(err=>{
             console.log(err);
         });
