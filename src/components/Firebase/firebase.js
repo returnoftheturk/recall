@@ -36,6 +36,8 @@ class Firebase{
 
     user = uid => this.db.collection('users').doc(uid);
 
+    getUser = () => this.user(this.auth.currentUser.uid);
+
     users = () => this.db.collection('users');
 
     createNewGroup = (groupName, groupDesc) => (this.db.collection('groups').add({

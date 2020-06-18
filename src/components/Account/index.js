@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
 import {withAuthorization, AuthUserContext} from '../Session';
 import '../../css/profileCard.css';
-import n_1 from '../../css/icons/n_1.png';
 import Alert from '@material-ui/lab/Alert';
-import Button from '@material-ui/core/Button';
-import {shortenString} from '../custom_components/NameCard';
+import ProfileCard from '../custom_components/ProfileCard'
+
+const INITIAL_STATE = {
+    emailSent: false,
+    closed: false,
+    error: false,
+    email: '',
+    firstName: '',
+    lastName: ''
+}
 
 class AccountPage extends Component {
     constructor(props){
         super(props);
         this.handleForgotEmail = this.handleForgotEmail.bind(this);
-        this.state = {
-            emailSent: false,
-            closed: false,
-            error: false
-        }
+        this.state = {...INITIAL_STATE}
     }
+    componentDidMount(){
+        const userData = this.props.firebase.getUser();
 
-    handleForgotEmail(){
-        const authUser = this.context;
-        const email = authUser.email;
+        userData.get().then(snapshot=>{
+            this.setState({
+                ...snapshot.data()
+            })
+        }).catch(err=>{
+            console.log(err);
+        });
+    }
+    handleForgotEmail(){        
+        const {email} = this.state;
         this.props.firebase.doPasswordReset(email).then(()=>{
             this.setState({emailSent: true, closed: false});
         }).catch(err=>{
@@ -28,16 +40,14 @@ class AccountPage extends Component {
         })
     }
     render(){
-        const authUser = this.context;
-        const {emailSent, closed, error} = this.state;
-        console.log('authuser', authUser);
+        const {email, firstName, lastName, emailSent, closed, error} = this.state
         return(
-            <div className="profileContainer" >
+            <div>
                 {emailSent && !closed && 
                     <Alert severity="success"
                         onClose={()=>{this.setState({closed: true})}}
                     >
-                            Password reset email successfully sent to: {authUser.email}
+                            Password reset email successfully sent to: {email}
                     </Alert>
                 }
                 {error && !closed && 
@@ -47,36 +57,15 @@ class AccountPage extends Component {
                     >
                         Could not send password reset email                    
                     </Alert>}
-                <div className="profileCard" >
-                    <div className="profileTopRow">
-                        <img src={n_1} alt="profileIcon" className="icon"/>
-                        <div 
-                            className="profileName" 
-                            
-                        >
-                            <div className="firstName">
-                                {'aasashm'.toUpperCase()}
-                            </div>
-                            <div className="lastName">
-                                {'akguasl'.toUpperCase()}
-                            </div>
-                            
-                        </div>		
-                    </div>
-                    <div className="profileDescription">
-                        <div className="userEmail">
-                            {/* {shortenString(authUser.email,60)} */}
-                            asldajsdlaksjdlkajsdlkajsdlkaj
-                        </div>
-                        <Button color="secondary" onClick={this.handleForgotEmail}>
-                            Forgot Password?
-                        </Button>
-                    </div>
-                </div>
+                <ProfileCard
+                    handleForgotEmail={this.handleForgotEmail}
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                />
             </div>
         )
     }
-
 }
 AccountPage.contextType = AuthUserContext;
 const condition = authUser => authUser != null;
