@@ -70,3 +70,10 @@ html, body {
 body.modal-open {
     padding-right: 0 !important;
 }
+.emptyGroup{
+    background-image: url('./icons/group_zero.jpg');
+    height:500px;
+    width:500px;
+    object-fit: contain;
+    background-position: center;
+}

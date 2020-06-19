@@ -10,6 +10,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import {withRouter} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import '../../css/groupCard.css';
+import groupImage from '../../css/icons/group_zero.jpg'
 
 const style = theme => ({
     fab: {
@@ -106,9 +107,13 @@ class GroupPageBase extends Component {
     render(){
         const {classes} = this.props;
         const {groups, loading} = this.state;
+        console.log('groups', groups.length === 0)
         return (
             <div className="groupContainer">
                 <h1>Groups Page</h1>
+                {groups.length === 0 && 
+                <div className="emptyGroup" />
+                }
                 <GroupForm 
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}
