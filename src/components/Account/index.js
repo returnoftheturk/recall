@@ -11,7 +11,8 @@ const INITIAL_STATE = {
     error: false,
     email: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
+    profileIcon: ''
 }
 
 class AccountPage extends Component {
@@ -39,6 +40,7 @@ class AccountPage extends Component {
             if (!ref) return
             else{
                 const {profileIcon, id} = ref;
+                this.setState({profileIcon});
                 return this.props.firebase.user(id).set({
                     profileIcon
                 }, { merge: true })
@@ -57,7 +59,7 @@ class AccountPage extends Component {
         })
     }
     render(){
-        const {email, firstName, lastName, emailSent, closed, error} = this.state
+        const {email, firstName, lastName, emailSent, closed, error, profileIcon} = this.state
         return(
             <div>
                 {emailSent && !closed && 
@@ -79,6 +81,7 @@ class AccountPage extends Component {
                     firstName={firstName}
                     lastName={lastName}
                     email={email}
+                    profileIcon={profileIcon}
                 />
             </div>
         )

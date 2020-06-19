@@ -3,15 +3,22 @@ import '../../../css/profileCard.css';
 import n_1 from '../../../css/icons/n_1.png';
 import Button from '@material-ui/core/Button';
 import {shortenString} from '../../custom_components/NameCard';
+import pf_1 from '../../../css/icons/pf_1.png';
+import pm_1 from '../../../css/icons/pm_1.png';
 
 class ProfileCard extends Component {
+    getProfileIcon(profileIconName){
+        if(profileIconName[0] === 'm') return pm_1;
+        else if (profileIconName[0] === 'f') return pf_1;
+        else return n_1;
+    }
     render(){
         return(
             <div className="profileContainer" >
                 
                 <div className="profileCard" >
                     <div className="profileTopRow">
-                        <img src={n_1} alt="profileIcon" className="icon"/>
+                        <img src={this.getProfileIcon(this.props.profileIcon)} alt="profileIcon" className="icon"/>
                         <div 
                             className="profileName" 
                             
