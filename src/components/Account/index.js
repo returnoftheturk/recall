@@ -1,18 +1,85 @@
-import React from 'react';
-import PasswordChangeForm from '../PasswordChange';
-import {withAuthorization, AuthUserContext} from '../Session';
+import React, { Component } from 'react';
+import {withAuthorization} from '../Session';
+import '../../css/profileCard.css';
+import Alert from '@material-ui/lab/Alert';
+import ProfileCard from '../custom_components/ProfileCard'
+import {getGenderProfileIcon} from '../Name';
 
-const AccountPage = () => (
-    <AuthUserContext.Consumer>
-        {authUser => (
+const INITIAL_STATE = {
+    emailSent: false,
+    closed: false,
+    error: false,
+    email: '',
+    firstName: '',
+    lastName: '',
+    profileIcon: ''
+}
+
+class AccountPage extends Component {
+    constructor(props){
+        super(props);
+        this.handleForgotEmail = this.handleForgotEmail.bind(this);
+        this.state = {...INITIAL_STATE}
+    }
+    componentDidMount(){
+        const userData = this.props.firebase.getUser();
+
+        userData.get().then(snapshot=>{
+            this.setState({
+                ...snapshot.data()
+            })
+            const {firstName, profileIcon} = snapshot.data();
+            const {id} = snapshot;
+            if(!profileIcon) return getGenderProfileIcon(firstName,id);
+        }).then(ref=>{
+            const {profileIcon, id} = ref;
+            this.setState({profileIcon});
+            return this.props.firebase.user(id).set({
+                profileIcon
+            }, { merge: true })
+        }).catch(err=>{
+            console.log(err);
+        });
+    }
+    handleForgotEmail(){        
+        const {email} = this.state;
+        console.log('handleemailstate', this.state);
+        this.props.firebase.doPasswordReset(email).then(()=>{
+            this.setState({emailSent: true, closed: false});
+        }).catch(err=>{
+            this.setState({error:true, closed:false});
+            console.log(err);
+        })
+    }
+    render(){
+        const {email, firstName, lastName, emailSent, closed, error, profileIcon} = this.state
+        return(
             <div>
-                <h1>Account: {authUser.email}</h1>
-                <PasswordChangeForm/>
+                {emailSent && !closed && 
+                    <Alert severity="success"
+                        onClose={()=>{this.setState({closed: true})}}
+                    >
+                            Password reset email successfully sent to: {email}
+                    </Alert>
+                }
+                {error && !closed && 
+                    <Alert 
+                        severity="error"
+                        onClose={()=>{this.setState({closed: true})}}
+                    >
+                        Could not send password reset email                    
+                    </Alert>}
+                <ProfileCard
+                    handleForgotEmail={this.handleForgotEmail}
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                    profileIcon={profileIcon}
+                />
             </div>
-        )}
-    </AuthUserContext.Consumer>
-
-);
+        )
+    }
+}
 const condition = authUser => authUser != null;
 
 export default withAuthorization(condition)(AccountPage);
