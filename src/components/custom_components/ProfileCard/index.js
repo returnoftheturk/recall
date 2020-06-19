@@ -14,36 +14,32 @@ class ProfileCard extends Component {
     }
     render(){
         return(
-            <div className="profileContainer" >
-                
-                <div className="profileCard" >
-                    <div className="profileTopRow">
-                        <img src={this.getProfileIcon(this.props.profileIcon)} alt="profileIcon" className="icon"/>
-                        <div 
-                            className="profileName" 
-                            
-                        >
-                            <div className="firstName">
-                                {this.props.firstName.toUpperCase()}
-                            </div>
-                            <div className="lastName">
-                                {this.props.lastName.toUpperCase()}
-                            </div>
-                            
-                        </div>		
-                    </div>
-                    <div className="profileDescription">
-                        <div className="userEmail">
-                            {shortenString(this.props.email,60)}
+            <div className="profileCard" >
+                <div className="profileTopRow">
+                    <img src={this.getProfileIcon(this.props.profileIcon)} alt="profileIcon" className="icon"/>
+                    <div 
+                        className="profileName" 
+                        
+                    >
+                        <div className="firstName">
+                            {this.props.firstName.toUpperCase()}
                         </div>
-                        <Button color="secondary" onClick={this.props.handleForgotEmail}>
-                            Forgot Password?
-                        </Button>
+                        <div className="lastName">
+                            {this.props.lastName.toUpperCase()}
+                        </div>
+                        
+                    </div>		
+                </div>
+                <div className="profileDescription">
+                    <div className="userEmail">
+                        {shortenString(this.props.email,60)}
                     </div>
+                    <Button color="secondary" onClick={this.props.handleForgotEmail}>
+                        Forgot Password?
+                    </Button>
                 </div>
             </div>
         )
     }
 }
-
 export default ProfileCard;

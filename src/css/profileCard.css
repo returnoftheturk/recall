@@ -4,7 +4,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    /* max-height:300px; */
     height: auto;
     width:300px;
     box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.25), -2px -2px 15px 3px rgba(0,0,0,0.22);
@@ -44,29 +43,19 @@
     align-items: center;
     font-size: 2em;	
     padding: 5px;
-    
     word-wrap    : normal;
     overflow-wrap: break-word;
-
 }
 
 .firstName {
     text-align: center;
-    
     width: inherit;
     height: inherit;
-    
-    /* font-size: 2em;	 */
-
 
 }
-.lastName {
-    
+.lastName {    
     width: inherit;
     height: inherit;
-    /* font-size: 2em;	 */
-
-
 }
 
 .profileDescription {

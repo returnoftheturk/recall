@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {withAuthorization, AuthUserContext} from '../Session';
+import {withAuthorization} from '../Session';
 import '../../css/profileCard.css';
 import Alert from '@material-ui/lab/Alert';
 import ProfileCard from '../custom_components/ProfileCard'
@@ -28,29 +28,22 @@ class AccountPage extends Component {
             this.setState({
                 ...snapshot.data()
             })
-            
-            return snapshot;
-        }).then(snapshot=>{
             const {firstName, profileIcon} = snapshot.data();
             const {id} = snapshot;
-            if(!profileIcon){
-                return getGenderProfileIcon(firstName,id);
-            }else return
+            if(!profileIcon) return getGenderProfileIcon(firstName,id);
         }).then(ref=>{
-            if (!ref) return
-            else{
-                const {profileIcon, id} = ref;
-                this.setState({profileIcon});
-                return this.props.firebase.user(id).set({
-                    profileIcon
-                }, { merge: true })
-            }
+            const {profileIcon, id} = ref;
+            this.setState({profileIcon});
+            return this.props.firebase.user(id).set({
+                profileIcon
+            }, { merge: true })
         }).catch(err=>{
             console.log(err);
         });
     }
     handleForgotEmail(){        
         const {email} = this.state;
+        console.log('handleemailstate', this.state);
         this.props.firebase.doPasswordReset(email).then(()=>{
             this.setState({emailSent: true, closed: false});
         }).catch(err=>{
@@ -87,7 +80,6 @@ class AccountPage extends Component {
         )
     }
 }
-AccountPage.contextType = AuthUserContext;
 const condition = authUser => authUser != null;
 
 export default withAuthorization(condition)(AccountPage);
