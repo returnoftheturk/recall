@@ -60,18 +60,17 @@ html, body {
     margin-bottom: 65px;
 }
  .groupContainer {
-    display:flex;
-    align-items: center;
+    /* display:flex;
+    align-items: center; */
     margin-bottom: 65px;
-    justify-content: center;
-    text-align: center;
+    /* justify-content: center; */
 }
-.groupTitle{
+.emptyTitle{
     margin-top: 10px;
     font-size: 50px;
     font-weight: 700;
 }
-.groupMessage{
+.emptyMessage{
     padding: 20px;
     font-size: 25px;
 
@@ -84,15 +83,16 @@ html, body {
 body.modal-open {
     padding-right: 0 !important;
 }
-.emptyGroupContainer{
+.emptyContainer{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     height: auto;
     width: 280px;
+    text-align: center;
 }
-.groupBackground{
+.emptyBackground{
     background: url('./icons/group_zero.jpg') center;
     height:100%;
     width: 100%;

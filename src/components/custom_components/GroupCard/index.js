@@ -6,7 +6,7 @@ import {shortenString} from '../NameCard';
 
 const GroupCard = props => {
     const handleClick = () => {
-        props.onClick(props.id);
+        props.onClick(props.id, props.name);
     }
 
     return (
