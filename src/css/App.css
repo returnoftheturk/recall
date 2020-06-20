@@ -73,13 +73,23 @@ html, body {
 .emptyMessage{
     padding: 20px;
     font-size: 25px;
-
+}
+@media only screen and (max-width: 600px){
+    .searchBar{
+        max-width: 150px;
+    }
 }
 .searchTitle {
     display: flex;
     justify-content: space-evenly;
     margin: 10px;
 }
+
+.titleChild{
+    font-size: 30px;
+    font-weight: 500;
+}
+
 body.modal-open {
     padding-right: 0 !important;
 }
