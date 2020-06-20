@@ -1,0 +1,15 @@
+@media only screen and (max-width: 600px){
+    .searchBar{
+        max-width: 150px;
+    }
+}
+.searchTitle {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+.titleChild{
+    font-size: 30px;
+    font-weight: 500;
+}

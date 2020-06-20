@@ -26,6 +26,9 @@ html, body {
     overflow-x: hidden !important;
     font-family: 'Roboto', sans-serif; 
 }
+body.modal-open {
+    padding-right: 0 !important;
+}
 .group-list, .contact-list {
     z-index: 0;
     width: 100%;
@@ -56,43 +59,30 @@ html, body {
     width: 4rem;
     height: 4rem;
 }
-.nameContainer {
+.nameContainer, .groupContainer {
     margin-bottom: 65px;
 }
- .groupContainer {
-    display:flex;
-    align-items: center;
-    margin-bottom: 65px;
-    justify-content: center;
-    text-align: center;
-}
-.groupTitle{
+.emptyTitle{
     margin-top: 10px;
     font-size: 50px;
-    font-weight: 700;
+    font-weight: 500;
+    display:flex;
+    justify-content: space-evenly;
 }
-.groupMessage{
+.emptyMessage{
     padding: 20px;
     font-size: 25px;
-
 }
-.searchTitle {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 10px;
-}
-body.modal-open {
-    padding-right: 0 !important;
-}
-.emptyGroupContainer{
+.emptyContainer{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     height: auto;
     width: 280px;
+    text-align: center;
 }
-.groupBackground{
+.emptyBackground{
     background: url('./icons/group_zero.jpg') center;
     height:100%;
     width: 100%;

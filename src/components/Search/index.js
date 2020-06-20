@@ -7,9 +7,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
 import '../../css/contactCard.css';
+import '../../css/search.css'
 import {getGenderProfileIcon, getDate, renderNameCards} from '../Name';
 import TextField from '@material-ui/core/TextField';
 import {stringToColor} from '../Group';
+import searchImage from '../../css/icons/names_zero.jpg';
+
 
 const style = theme => ({
     fab: {
@@ -104,15 +107,17 @@ class SearchPageBase extends Component {
         return (
             <div className="nameContainer">
                 <div className = "searchTitle">
-                    <h1>
+                    <div className="titleChild">
                         Contacts
-                    </h1>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Contact Name" 
-                        variant="outlined"
-                        onChange={e=>{this.setState({filter:e.target.value})}}    
-                    />
+                    </div>
+                    <div className="searchBar">
+                        <TextField 
+                            id="outlined-basic" 
+                            label="Contact Name" 
+                            variant="outlined"
+                            onChange={e=>{this.setState({filter:e.target.value})}}    
+                        />
+                    </div>
                 </div>
                 <div className="modal">
                     <NameForm
@@ -124,9 +129,15 @@ class SearchPageBase extends Component {
                 
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
-                    names.length > 0 ? 
-                        renderNameCards(names) : 
-                        <p> Looks like you have no new contacts yet!  Click Add below to create one.</p>
+                    names.length === 0 ? 
+                        <div className="emptyContainer">
+                            <img className="emptyBackground" src={searchImage} alt="zero"/>
+                            <div className="emptyMessage">
+                                Create a contact and it will show up here.
+                            </div>
+                        </div>
+                        :
+                        renderNameCards(names)
                 }
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow} className={classes.fab}>
                     <AddIcon />

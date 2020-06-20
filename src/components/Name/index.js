@@ -11,6 +11,7 @@ import NameForm from '../custom_components/NameForm';
 import NameCard from '../custom_components/NameCard';
 import '../../css/contactCard.css';
 import {stringToColor} from '../Group';
+import nameImage from '../../css/icons/names_zero.jpg';
 
 const style = theme => ({
     fab: {
@@ -82,7 +83,7 @@ class NamePageBase extends Component {
             loading: false
         }
         this.groupId = this.props.location.gId;
-        
+        this.groupName = this.props.location.groupName;
     }
     handleFormShow = () => {
         this.setState({formShow: true})
@@ -137,18 +138,22 @@ class NamePageBase extends Component {
         const {names, loading} = this.state;
         return (
             <div className="nameContainer">
-                <h1>
-                    Names Page
-                </h1>
                 <NameForm 
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}
                     handleFormSubmit={this.handleFormSubmit} />
+                <div className="emptyTitle">{this.groupName}</div>
+
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
                     names.length > 0 ? 
                         renderNameCards(names) : 
-                        <p> This group looks empty!  Click Add below to create a new contact.</p>
+                        <div className="emptyContainer">
+                            <img className="emptyBackground" src={nameImage} alt="zero"/>
+                            <div className="emptyMessage">
+                                Create a contact and it will show up here.    
+                            </div>
+                        </div>
                 }
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow} className={classes.fab}>
                     <AddIcon />

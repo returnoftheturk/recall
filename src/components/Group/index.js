@@ -65,8 +65,8 @@ class GroupPageBase extends Component {
             console.log(err)
         })
     }
-    handleGroupClick = (key) =>{
-        this.props.history.push({pathname: ROUTES.NAME, gId: key});
+    handleGroupClick = (key, name) =>{
+        this.props.history.push({pathname: ROUTES.NAME, gId: key, groupName: name});
     }
     
     componentDidMount() {
@@ -109,20 +109,18 @@ class GroupPageBase extends Component {
         const {groups, loading} = this.state;
         return (
             <div className="groupContainer">
-                
                 <GroupForm 
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}
                     handleFormSubmit={this.handleFormSubmit} />
-
+                <div className="emptyTitle">Groups</div>
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
                     groups.length === 0 ?
-                    <div className="emptyGroupContainer">
-                        <div className="groupTitle">Groups</div>
-                        <img className="groupBackground" src={groupImage} alt="zero"/>
-                        <div className="groupMessage">
-                            Create a group and it will show up here.    
+                    <div className="emptyContainer">
+                        <img className="emptyBackground" src={groupImage} alt="zero"/>
+                        <div className="emptyMessage">
+                            Create a group and it will show up here.
                         </div>
                     </div>
                     :
