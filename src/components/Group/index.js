@@ -107,23 +107,27 @@ class GroupPageBase extends Component {
     render(){
         const {classes} = this.props;
         const {groups, loading} = this.state;
-        console.log('groups', groups.length === 0)
         return (
             <div className="groupContainer">
-                <h1>Groups Page</h1>
-                {groups.length === 0 && 
-                <div className="emptyGroup" />
-                }
+                
                 <GroupForm 
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}
                     handleFormSubmit={this.handleFormSubmit} />
+
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
-                    groups.length > 0 ? 
-                        this.renderGroupCards() : 
-                        <p> Looks like you don't have any groups yet.  Click Add below to create one.</p>
-                }
+                    groups.length === 0 ?
+                    <div className="emptyGroupContainer">
+                        <div className="groupTitle">Groups</div>
+                        <img className="groupBackground" src={groupImage} alt="zero"/>
+                        <div className="groupMessage">
+                            Create a group and it will show up here.    
+                        </div>
+                    </div>
+                    :
+                    this.renderGroupCards()
+                }                
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow} className={classes.fab}>
                     <AddIcon />
                 </Fab>
