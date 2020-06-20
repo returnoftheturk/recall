@@ -65,7 +65,6 @@ function SignUpFormBase(props) {
     const [error, setError] = useState(null);
     const emailError = error && (error.code==='auth/invalid-email' || error.code==='auth/email-already-in-use')
     const isInvalid = password === '' || email === '' || firstName === '' || lastName === '';
-    console.log(error)
     const onSubmit = (event) => {
         props.firebase
             .doCreateUserWithEmailAndPassword(email, password)

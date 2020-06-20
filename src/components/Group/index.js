@@ -10,6 +10,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import {withRouter} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import '../../css/groupCard.css';
+import groupImage from '../../css/icons/group_zero.jpg'
 
 const style = theme => ({
     fab: {
@@ -108,17 +109,25 @@ class GroupPageBase extends Component {
         const {groups, loading} = this.state;
         return (
             <div className="groupContainer">
-                <h1>Groups Page</h1>
+                
                 <GroupForm 
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}
                     handleFormSubmit={this.handleFormSubmit} />
+
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
-                    groups.length > 0 ? 
-                        this.renderGroupCards() : 
-                        <p> Looks like you don't have any groups yet.  Click Add below to create one.</p>
-                }
+                    groups.length === 0 ?
+                    <div className="emptyGroupContainer">
+                        <div className="groupTitle">Groups</div>
+                        <img className="groupBackground" src={groupImage} alt="zero"/>
+                        <div className="groupMessage">
+                            Create a group and it will show up here.    
+                        </div>
+                    </div>
+                    :
+                    this.renderGroupCards()
+                }                
                 <Fab color="primary" aria-label="add" onClick={this.handleFormShow} className={classes.fab}>
                     <AddIcon />
                 </Fab>
