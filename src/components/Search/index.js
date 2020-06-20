@@ -7,10 +7,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Spinner from 'react-bootstrap/Spinner';
 import NameForm from '../custom_components/NameForm';
 import '../../css/contactCard.css';
+import '../../css/search.css'
 import {getGenderProfileIcon, getDate, renderNameCards} from '../Name';
 import TextField from '@material-ui/core/TextField';
 import {stringToColor} from '../Group';
 import searchImage from '../../css/icons/names_zero.jpg';
+
 
 const style = theme => ({
     fab: {
@@ -129,7 +131,6 @@ class SearchPageBase extends Component {
                     <Spinner animation="grow" className='spinner'/>:
                     names.length === 0 ? 
                         <div className="emptyContainer">
-                            {/* <div className="emptyTitle">Groups</div> */}
                             <img className="emptyBackground" src={searchImage} alt="zero"/>
                             <div className="emptyMessage">
                                 Create a contact and it will show up here.

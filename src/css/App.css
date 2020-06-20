@@ -26,6 +26,9 @@ html, body {
     overflow-x: hidden !important;
     font-family: 'Roboto', sans-serif; 
 }
+body.modal-open {
+    padding-right: 0 !important;
+}
 .group-list, .contact-list {
     z-index: 0;
     width: 100%;
@@ -56,42 +59,19 @@ html, body {
     width: 4rem;
     height: 4rem;
 }
-.nameContainer {
+.nameContainer, .groupContainer {
     margin-bottom: 65px;
-}
- .groupContainer {
-    /* display:flex;
-    align-items: center; */
-    margin-bottom: 65px;
-    /* justify-content: center; */
 }
 .emptyTitle{
     margin-top: 10px;
     font-size: 50px;
-    font-weight: 700;
+    font-weight: 500;
+    display:flex;
+    justify-content: space-evenly;
 }
 .emptyMessage{
     padding: 20px;
     font-size: 25px;
-}
-@media only screen and (max-width: 600px){
-    .searchBar{
-        max-width: 150px;
-    }
-}
-.searchTitle {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 10px;
-}
-
-.titleChild{
-    font-size: 30px;
-    font-weight: 500;
-}
-
-body.modal-open {
-    padding-right: 0 !important;
 }
 .emptyContainer{
     position: absolute;

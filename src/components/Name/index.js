@@ -142,12 +142,13 @@ class NamePageBase extends Component {
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}
                     handleFormSubmit={this.handleFormSubmit} />
+                <div className="emptyTitle">{this.groupName}</div>
+
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
                     names.length > 0 ? 
                         renderNameCards(names) : 
                         <div className="emptyContainer">
-                            <div className="emptyTitle">{this.groupName}</div>
                             <img className="emptyBackground" src={nameImage} alt="zero"/>
                             <div className="emptyMessage">
                                 Create a contact and it will show up here.    

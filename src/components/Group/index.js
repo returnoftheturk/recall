@@ -113,12 +113,11 @@ class GroupPageBase extends Component {
                     show={this.state.formShow} 
                     handleFormHide={this.handleFormHide}
                     handleFormSubmit={this.handleFormSubmit} />
-
+                <div className="emptyTitle">Groups</div>
                 {loading ? 
                     <Spinner animation="grow" className='spinner'/>:
                     groups.length === 0 ?
                     <div className="emptyContainer">
-                        <div className="emptyTitle">Groups</div>
                         <img className="emptyBackground" src={groupImage} alt="zero"/>
                         <div className="emptyMessage">
                             Create a group and it will show up here.
