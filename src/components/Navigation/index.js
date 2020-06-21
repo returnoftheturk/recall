@@ -85,10 +85,6 @@ function BottomNavigation(props) {
         handleMenuClose();
         props.history.push(ROUTES.ACCOUNT);
     }
-    const handleAdminClick = () => {
-        handleMenuClose();
-        props.history.push(ROUTES.ADMIN);
-    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -102,7 +98,6 @@ function BottomNavigation(props) {
         onClose={handleMenuClose}
     >
         <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
-        <MenuItem onClick={handleAdminClick}>Admin</MenuItem>
         <SignOutItem/>
     </Menu>
 );
@@ -123,7 +118,6 @@ function BottomNavigation(props) {
                     >
                         <Tab label="Groups" icon={<GroupIcon/>} component={Link} to={ROUTES.GROUP} {...a11yProps(0)} />
                         <Tab label="Contacts" icon={<SearchIcon/>} component={Link} to={ROUTES.SEARCH} {...a11yProps(1)} />
-                        {/* <Tab label="ADMIN" component={Link} to={ROUTES.ADMIN} {...a11yProps(2)} /> */}
                     </Tabs>
                     <div className={classes.grow} />
                         

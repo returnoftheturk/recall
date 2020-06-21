@@ -5,5 +5,4 @@ export const GROUP = '/group';
 export const NAME = '/name';
 export const SEARCH = '/search';
 export const ACCOUNT = '/account';
-export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';

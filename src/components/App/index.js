@@ -9,7 +9,6 @@ import PasswordForgetPage from '../PasswordForget';
 import GroupPage from '../Group';
 import NamePage from '../Name';
 import AccountPage from '../Account';
-import AdminPage from '../Admin';
 import SearchPage from '../Search';
 import * as ROUTES from '../../constants/routes';
 import {withAuthentication} from '../Session';
@@ -34,7 +33,6 @@ class App extends Component {
           <Route path={ROUTES.NAME} component={NamePage} />
           <Route path={ROUTES.SEARCH} component={SearchPage} />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-          <Route path={ROUTES.ADMIN} component={AdminPage} />
         </div>
       </Router>
     )
