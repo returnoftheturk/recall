@@ -69,6 +69,14 @@ body.modal-open {
     display:flex;
     justify-content: space-evenly;
 }
+.logoTitle{
+    margin-top: 30px;
+    margin-bottom: 40px;
+    font-size: 70px;
+    font-weight: 500;
+    display:flex;
+    justify-content: space-evenly;
+}
 .emptyMessage{
     padding: 20px;
     font-size: 25px;
